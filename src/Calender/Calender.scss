@@ -1,0 +1,199 @@
+.calender {
+  height: 100%;
+
+  .calender-header {
+    height: 10%;
+  }
+
+  .calender-body-wrapper {
+    overflow: auto;
+    height: 90%;
+  }
+
+  .calender-header {
+    > *:not(:last-child) {
+      margin-right: 1.5em;
+    }
+    h3 {
+      display: flex;
+      align-items: center;
+    }
+
+    padding: 0 1em;
+    display: flex;
+
+    .display-selector-radio-box {
+      display: flex;
+      align-items: center;
+
+      > *:not(:last-child) {
+        margin-right: 1em;
+      }
+
+      .display-selector {
+        border-radius: 0.25em;
+        padding: 0.125em 1.5em;
+        border: solid #bababa 3px;
+
+        &.active {
+          border-color: #095eef;
+        }
+      }
+    }
+  }
+
+  $border: solid 1px #dfdfdf;
+
+  .calender-body-wrapper {
+    .calender-body {
+      width: 100%;
+      border-collapse: collapse;
+
+      td {
+        border: $border;
+        height: 4em;
+        position: relative;
+
+        &.event-cell {
+          height: 0;
+          border: none;
+        }
+
+        &:last-child {
+          border-right: none;
+        }
+      }
+
+      thead {
+        top: 0;
+        position: sticky;
+        z-index: 100;
+
+        th {
+          &:first-child {
+            width: 0;
+          }
+
+          background-color: #ffffff;
+
+          &:not(:last-child) {
+            border-right: $border;
+          }
+
+          text-align: center;
+        }
+
+        $today-color: #1f76e8;
+        .date-header-day-cell.today {
+          color: $today-color;
+        }
+        .date-header-date-cell {
+          position: relative;
+
+          .invisible-for-width {
+            visibility: hidden;
+          }
+
+          .date-text {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          &.today {
+            .date-text div{
+              border-radius: 100%;
+              background-color: $today-color;
+              color: #fff;
+
+              height: 1.5em;
+              width: 1.5em;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+          }
+        }
+      }
+
+      .date-body {
+        .hour-label-cell {
+          position: relative;
+
+          span {
+            font-size: .75em;
+            white-space: nowrap;
+          }
+
+          .hour-label-text {
+            text-align: center;
+            position: absolute;
+            transform: translate(0, -50%);
+            left: 0;
+            right: 0;
+            top: 0;
+            z-index: 110;
+          }
+
+          .hour-label-text-dummy-for-space {
+            visibility: hidden;
+          }
+
+        }
+
+        .calender-date-cell {
+
+          &.saturday {
+            background-color: #f5f7fe;
+          }
+
+          &.sunday {
+            background-color: #ffe9e9;
+          }
+        }
+
+        .calender-event {
+          border: solid 1px #888888;
+          position: absolute;
+          border-radius: 2em;
+
+          > div {
+            padding: 10px;
+            font-size: 0.75em;
+          }
+        }
+      }
+
+      .calender-current-time-marker {
+        width: 100%;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        $marker-color: #ea4335;
+
+        .circle {
+          background: $marker-color;
+          border-radius: 50%;
+          content: "";
+          position: absolute;
+          width: 16px;
+          height: 16px;
+        }
+
+        .bar {
+          border-top: $marker-color solid 3px;
+          width: 100%;
+          left: 0;
+          right: 0;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+}
