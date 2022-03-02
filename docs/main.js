@@ -34199,9 +34199,9 @@ var _a;
 
 var dateInitForDemo = (new Date()).getDate();
 var pallet = [
-    '#b8f9ba',
-    '#ccddff',
-    '#dfdfdf',
+    '#b8f9ba88',
+    '#ccddff88',
+    '#dfdfdf88',
 ];
 var events = (_a = {},
     _a[dateInitForDemo] = [{

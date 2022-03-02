@@ -11,9 +11,9 @@ import {includeCurrentTime, isToday} from "./calender-helper";
 
 const dateInitForDemo = (new Date()).getDate();
 const pallet = [
-  '#b8f9ba',
-  '#ccddff',
-  '#dfdfdf',
+  '#b8f9ba88',
+  '#ccddff88',
+  '#dfdfdf88',
 ]
 const events: { [p: number]: CalenderEventInput[] } = {
   [dateInitForDemo]: [{
