@@ -43,15 +43,28 @@ export class EventRangeDisplayCalculator {
     // 幅と開始地点を決定
     const slotsCount = this.dateRangeList.length;
     // 描画箇所を割り当て済みかつループ内で参照している範囲と被りうる範囲を貯める
-    let stackRange: PrimitiveRange[] = []
+    let stackRange: PrimitiveRange[] = [];
+    let slots: Array<PrimitiveRange | null> = Array(this.dateRangeList.length).fill(null);
     return startAsc.map((range): DateRangeRet => {
       // 現在参照している範囲と被らないスタックしている範囲を除去
-      stackRange = stackRange.filter(rangeInStack => rangeInStack.end > range.start)
-      // スタックしている範囲の分、幅と開始地点をずらす
-      range.widthPer = 100 / slotsCount * (slotsCount - stackRange.length);
-      range.leftPer = 100 - range.widthPer;
-      // スタックに現在参照している範囲を追加
-      stackRange.push({...range});
+      slots = slots.map(rangeInSlots => (rangeInSlots && rangeInSlots.end > range.start) ? rangeInSlots : null)
+      try {
+        slots.forEach((allocateRange, index) => {
+          if (allocateRange) {
+            return;
+          }
+          slots[index] = range
+          const marginRight = slots.slice(index + 1).filter((r) => !!r).length
+          // スタックしている範囲の分、幅と開始地点をずらす
+          range.leftPer = index * 100 / slotsCount;
+          range.widthPer = 100 - range.leftPer - marginRight * 100 / slotsCount;
+          throw 'break'
+        })
+      } catch (e) {
+        if (e !== 'break') {
+          throw e
+        }
+      }
       // 描画範囲を追加した要素を返す
       return {
         start: range.start,
