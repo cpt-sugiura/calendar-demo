@@ -34518,36 +34518,25 @@ var EventRangeDisplayCalculator = /** @class */ (function () {
         // 幅と開始地点を決定
         var slotsCount = this.dateRangeList.length;
         // 描画箇所を割り当て済みかつループ内で参照している範囲と被りうる範囲を貯める
-        var stackRange = [];
         var slots = Array(this.dateRangeList.length).fill(null);
         return startAsc.map(function (range) {
-            var _a, _b;
             // 現在参照している範囲と被らないスロット割り当て済み範囲をnull埋め。スロットを空ける
             slots = slots.map(function (rangeInSlots) { return (rangeInSlots && rangeInSlots.end > range.start ? rangeInSlots : null); });
             // 割り当てスロットの決定
             var spaces = continuousFreeSpaceSlots(slots.map(function (r) { return r ? true : null; }))
                 // 幅降順
                 .sort(function (a, b) { return (0,_calender_helper__WEBPACK_IMPORTED_MODULE_0__.spaceshipEval)(b.width, a.width); });
+            // 空きスロットの内、最も幅が大きい部分を割り当てる。幅が同じならば左側を優先して割り当てる
             var allocateSpace = spaces[0];
-            // @ts-ignore
-            if (range.title.includes('8')) {
-                console.log({
-                    range: range,
-                    allocateSpace: allocateSpace
-                });
-            }
             slots[allocateSpace.start] = range;
-            // スタックしている範囲の分、幅と開始地点をずらす
-            range.leftPer = allocateSpace.start * 100 / slotsCount;
-            range.widthPer = allocateSpace.width * 100 / slotsCount;
             // 描画範囲を追加した要素を返す
             return {
                 start: range.start,
                 end: range.end,
                 heightPer: range.heightPer,
-                leftPer: (_a = range.leftPer) !== null && _a !== void 0 ? _a : 0,
+                leftPer: allocateSpace.start * 100 / slotsCount,
                 topPer: range.topPer,
-                widthPer: (_b = range.widthPer) !== null && _b !== void 0 ? _b : 100,
+                widthPer: allocateSpace.width * 100 / slotsCount,
             };
         });
     };

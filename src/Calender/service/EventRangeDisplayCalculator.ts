@@ -38,7 +38,6 @@ export class EventRangeDisplayCalculator<T={}> {
     // 幅と開始地点を決定
     const slotsCount = this.dateRangeList.length;
     // 描画箇所を割り当て済みかつループ内で参照している範囲と被りうる範囲を貯める
-    const stackRange: PrimitiveRange[] = [];
     let slots: Array<PrimitiveRange | null> = Array(this.dateRangeList.length).fill(null);
     return startAsc.map((range): DateRangeRet => {
       // 現在参照している範囲と被らないスロット割り当て済み範囲をnull埋め。スロットを空ける
@@ -47,25 +46,17 @@ export class EventRangeDisplayCalculator<T={}> {
       const spaces = continuousFreeSpaceSlots(slots.map(r => r ? true : null))
         // 幅降順
         .sort((a, b) => spaceshipEval(b.width, a.width));
+      // 空きスロットの内、最も幅が大きい部分を割り当てる。幅が同じならば左側を優先して割り当てる
       const allocateSpace = spaces[0];
-      // @ts-ignore
-      if(range.title.includes('8')) {
-        console.log({
-          range, allocateSpace
-        })
-      }
       slots[allocateSpace.start] = range;
-      // スタックしている範囲の分、幅と開始地点をずらす
-      range.leftPer = allocateSpace.start * 100 / slotsCount;
-      range.widthPer = allocateSpace.width * 100 / slotsCount;
       // 描画範囲を追加した要素を返す
       return {
         start: range.start,
         end: range.end,
         heightPer: range.heightPer,
-        leftPer: range.leftPer ?? 0,
+        leftPer: allocateSpace.start * 100 / slotsCount,
         topPer: range.topPer,
-        widthPer: range.widthPer ?? 100,
+        widthPer: allocateSpace.width * 100 / slotsCount,
       };
     });
   }
