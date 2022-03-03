@@ -35,12 +35,6 @@ const events: { [p: number]: CalenderEventInput[] } = {
       backgroundColor: pallet[1],
     },
     {
-      title: '〇〇建設様配達先5',
-      startDate: new Date('2022-02-28 16:30:00'),
-      endDate: new Date('2022-02-28 18:00:00'),
-      backgroundColor: pallet[1],
-    },
-    {
       title: '〇〇建設様配達先6',
       startDate: new Date('2022-02-28 16:45:00'),
       endDate: new Date('2022-02-28 19:00:00'),
@@ -55,7 +49,7 @@ const events: { [p: number]: CalenderEventInput[] } = {
     {
       title: '〇〇建設様配達先8',
       startDate: new Date('2022-02-28 18:00:00'),
-      endDate: new Date('2022-02-28 19:00:00'),
+      endDate: new Date('2022-02-28 20:00:00'),
       backgroundColor: pallet[1],
     },
   ],
@@ -65,6 +59,12 @@ const events: { [p: number]: CalenderEventInput[] } = {
       startDate: new Date('2022-02-28 14:30:00'),
       endDate: new Date('2022-02-28 16:45:00'),
       backgroundColor: pallet[0],
+    },
+    {
+      title: '〇〇建設様配達先',
+      startDate: new Date('2022-02-28 14:30:00'),
+      endDate: new Date('2022-02-28 17:00:00'),
+      backgroundColor: pallet[1],
     },
   ],
 };
@@ -94,9 +94,10 @@ export const CalenderDateBody: React.FC<CalenderDateBodyProps> = (props) => {
         <td style={{ height: 0, border: 'none' }} />
         {props.calenderDates.map((d) => (
           <td className={'event-cell'} key={d.date.toISOString()} style={{ position: 'relative' }}>
-            {new EventRangeDisplayCalculator(
+            {new EventRangeDisplayCalculator<CalenderEventInput>(
               (events[d.date.getDate()] ?? []).map((d) => {
                 return {
+                  ...d,
                   start: d.startDate,
                   end: d.endDate,
                 };

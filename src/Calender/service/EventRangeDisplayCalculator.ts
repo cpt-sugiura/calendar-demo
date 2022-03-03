@@ -13,10 +13,10 @@ type DateRangeRet = {
   widthPer: number;
 };
 
-export class EventRangeDisplayCalculator {
-  private dateRangeList: PrimitiveRange[];
+export class EventRangeDisplayCalculator<T={}> {
+  private dateRangeList: Array<PrimitiveRange & T>;
 
-  constructor(dateRangeList: PrimitiveRange[]) {
+  constructor(dateRangeList: Array<PrimitiveRange & T>) {
     this.dateRangeList = dateRangeList;
   }
   public getDateRangeWithDisplay(): DateRangeRet[] {
@@ -24,7 +24,7 @@ export class EventRangeDisplayCalculator {
     const startAsc: Array<Partial<DateRangeRet> & PrimitiveRange & Omit<DateRangeRet, 'widthPer' | 'leftPer'>> =
       this.dateRangeList
         .sort((a, b) => spaceshipEval(a.start.getTime(), b.start.getTime()))
-        .map((range, i) => {
+        .map((range) => {
           // 高さは確定済みなのでここで記述
           const startSec = range.start.getHours() * 60 * 60 + range.start.getMinutes() * 60 + range.start.getSeconds();
           const endSec = range.end.getHours() * 60 * 60 + range.end.getMinutes() * 60 + range.end.getSeconds();
@@ -48,9 +48,12 @@ export class EventRangeDisplayCalculator {
         // 幅降順
         .sort((a, b) => spaceshipEval(b.width, a.width));
       const allocateSpace = spaces[0];
-      console.log({
-        range,allocateSpace
-      })
+      // @ts-ignore
+      if(range.title.includes('8')) {
+        console.log({
+          range, allocateSpace
+        })
+      }
       slots[allocateSpace.start] = range;
       // スタックしている範囲の分、幅と開始地点をずらす
       range.leftPer = allocateSpace.start * 100 / slotsCount;
@@ -91,7 +94,7 @@ const continuousFreeSpaceSlots = (slots: Array<null|true>): Array<Space> => {
         // no action
       } else {
         freeSlot.end = index - 1;
-        freeSlot.width = (index - 1) - freeSlot.start;
+        freeSlot.width = freeSlot.end - freeSlot.start + 1;
         ret.push(freeSlot as Space);
         freeSlot = {}
       }
@@ -99,7 +102,7 @@ const continuousFreeSpaceSlots = (slots: Array<null|true>): Array<Space> => {
   }
   if(freeSlot.start !== undefined){
     freeSlot.end = slots.length - 1;
-    freeSlot.width = slots.length - freeSlot.start;
+    freeSlot.width = freeSlot.end - freeSlot.start + 1;
     ret.push(freeSlot as Space);
   }
   return ret;

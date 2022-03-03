@@ -34189,6 +34189,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _service_EventRangeDisplayCalculator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./service/EventRangeDisplayCalculator */ "./src/Calender/service/EventRangeDisplayCalculator.ts");
 /* harmony import */ var _CalenderTimeMarker__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./CalenderTimeMarker */ "./src/Calender/CalenderTimeMarker.tsx");
 /* harmony import */ var _calender_helper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./calender-helper */ "./src/Calender/calender-helper.ts");
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var _a;
 
 
@@ -34225,12 +34236,6 @@ var events = (_a = {},
             backgroundColor: pallet[1],
         },
         {
-            title: '〇〇建設様配達先5',
-            startDate: new Date('2022-02-28 16:30:00'),
-            endDate: new Date('2022-02-28 18:00:00'),
-            backgroundColor: pallet[1],
-        },
-        {
             title: '〇〇建設様配達先6',
             startDate: new Date('2022-02-28 16:45:00'),
             endDate: new Date('2022-02-28 19:00:00'),
@@ -34245,7 +34250,7 @@ var events = (_a = {},
         {
             title: '〇〇建設様配達先8',
             startDate: new Date('2022-02-28 18:00:00'),
-            endDate: new Date('2022-02-28 19:00:00'),
+            endDate: new Date('2022-02-28 20:00:00'),
             backgroundColor: pallet[1],
         },
     ],
@@ -34255,6 +34260,12 @@ var events = (_a = {},
             startDate: new Date('2022-02-28 14:30:00'),
             endDate: new Date('2022-02-28 16:45:00'),
             backgroundColor: pallet[0],
+        },
+        {
+            title: '〇〇建設様配達先',
+            startDate: new Date('2022-02-28 14:30:00'),
+            endDate: new Date('2022-02-28 17:00:00'),
+            backgroundColor: pallet[1],
         },
     ],
     _a);
@@ -34277,10 +34288,7 @@ var CalenderDateBody = function (props) {
             props.calenderDates.map(function (d) {
                 var _a;
                 return (react__WEBPACK_IMPORTED_MODULE_1__.createElement("td", { className: 'event-cell', key: d.date.toISOString(), style: { position: 'relative' } }, new _service_EventRangeDisplayCalculator__WEBPACK_IMPORTED_MODULE_3__.EventRangeDisplayCalculator(((_a = events[d.date.getDate()]) !== null && _a !== void 0 ? _a : []).map(function (d) {
-                    return {
-                        start: d.startDate,
-                        end: d.endDate,
-                    };
+                    return __assign(__assign({}, d), { start: d.startDate, end: d.endDate });
                 }))
                     .getDateRangeWithDisplay()
                     .map(function (e, i) {
@@ -34501,7 +34509,7 @@ var EventRangeDisplayCalculator = /** @class */ (function () {
         // 開始日時昇順
         var startAsc = this.dateRangeList
             .sort(function (a, b) { return (0,_calender_helper__WEBPACK_IMPORTED_MODULE_0__.spaceshipEval)(a.start.getTime(), b.start.getTime()); })
-            .map(function (range, i) {
+            .map(function (range) {
             // 高さは確定済みなのでここで記述
             var startSec = range.start.getHours() * 60 * 60 + range.start.getMinutes() * 60 + range.start.getSeconds();
             var endSec = range.end.getHours() * 60 * 60 + range.end.getMinutes() * 60 + range.end.getSeconds();
@@ -34521,10 +34529,13 @@ var EventRangeDisplayCalculator = /** @class */ (function () {
                 // 幅降順
                 .sort(function (a, b) { return (0,_calender_helper__WEBPACK_IMPORTED_MODULE_0__.spaceshipEval)(b.width, a.width); });
             var allocateSpace = spaces[0];
-            console.log({
-                range: range,
-                allocateSpace: allocateSpace
-            });
+            // @ts-ignore
+            if (range.title.includes('8')) {
+                console.log({
+                    range: range,
+                    allocateSpace: allocateSpace
+                });
+            }
             slots[allocateSpace.start] = range;
             // スタックしている範囲の分、幅と開始地点をずらす
             range.leftPer = allocateSpace.start * 100 / slotsCount;
@@ -34563,7 +34574,7 @@ var continuousFreeSpaceSlots = function (slots) {
             }
             else {
                 freeSlot.end = index - 1;
-                freeSlot.width = (index - 1) - freeSlot.start;
+                freeSlot.width = freeSlot.end - freeSlot.start + 1;
                 ret.push(freeSlot);
                 freeSlot = {};
             }
@@ -34571,7 +34582,7 @@ var continuousFreeSpaceSlots = function (slots) {
     }
     if (freeSlot.start !== undefined) {
         freeSlot.end = slots.length - 1;
-        freeSlot.width = slots.length - freeSlot.start;
+        freeSlot.width = freeSlot.end - freeSlot.start + 1;
         ret.push(freeSlot);
     }
     return ret;
