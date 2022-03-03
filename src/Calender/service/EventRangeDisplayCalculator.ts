@@ -51,6 +51,7 @@ export class EventRangeDisplayCalculator<T = {}> {
       // 最も右のアイテムに操作はしないので <= length - 2
       const chainList: number[][] = [];
       let chain: number[] = [];
+      g = g.sort((a,b)=>spaceshipEval(a.leftPer, b.leftPer))
       for (let i = 0; i <= g.length - 2; i++) {
         const current = g[i];
         const next = g[i + 1]

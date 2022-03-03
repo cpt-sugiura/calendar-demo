@@ -34253,6 +34253,12 @@ var events = (_a = {},
             endDate: new Date('2022-02-28 20:00:00'),
             backgroundColor: pallet[1],
         },
+        {
+            title: '〇〇建設様配達先9',
+            startDate: new Date('2022-02-28 19:00:00'),
+            endDate: new Date('2022-02-28 20:00:00'),
+            backgroundColor: pallet[1],
+        },
     ],
     _a[dateInitForDemo + 1] = [
         {
@@ -34562,6 +34568,7 @@ var EventRangeDisplayCalculator = /** @class */ (function () {
             // 最も右のアイテムに操作はしないので <= length - 2
             var chainList = [];
             var chain = [];
+            g = g.sort(function (a, b) { return (0,_calender_helper__WEBPACK_IMPORTED_MODULE_0__.spaceshipEval)(a.leftPer, b.leftPer); });
             for (var i = 0; i <= g.length - 2; i++) {
                 var current = g[i];
                 var next = g[i + 1];
