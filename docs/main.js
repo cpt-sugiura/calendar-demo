@@ -34256,13 +34256,31 @@ var events = (_a = {},
     ],
     _a[dateInitForDemo + 1] = [
         {
-            title: '〇〇建設様配達先',
+            title: '〇〇建設様配達先3',
+            startDate: new Date('2022-02-28 10:30:00'),
+            endDate: new Date('2022-02-28 12:00:00'),
+            backgroundColor: pallet[1],
+        },
+        {
+            title: '〇〇建設様配達先4',
+            startDate: new Date('2022-02-28 10:30:00'),
+            endDate: new Date('2022-02-28 12:00:00'),
+            backgroundColor: pallet[1],
+        },
+        {
+            title: '〇〇建設様配達先5',
+            startDate: new Date('2022-02-28 10:30:00'),
+            endDate: new Date('2022-02-28 12:00:00'),
+            backgroundColor: pallet[1],
+        },
+        {
+            title: '〇〇建設様配達先1',
             startDate: new Date('2022-02-28 14:30:00'),
             endDate: new Date('2022-02-28 16:45:00'),
             backgroundColor: pallet[0],
         },
         {
-            title: '〇〇建設様配達先',
+            title: '〇〇建設様配達先2',
             startDate: new Date('2022-02-28 14:30:00'),
             endDate: new Date('2022-02-28 17:00:00'),
             backgroundColor: pallet[1],
@@ -34519,7 +34537,7 @@ var EventRangeDisplayCalculator = /** @class */ (function () {
         var slotsCount = this.dateRangeList.length;
         // 描画箇所を割り当て済みかつループ内で参照している範囲と被りうる範囲を貯める
         var slots = Array(this.dateRangeList.length).fill(null);
-        return startAsc.map(function (range) {
+        var allocatedRanges = startAsc.map(function (range) {
             // 現在参照している範囲と被らないスロット割り当て済み範囲をnull埋め。スロットを空ける
             slots = slots.map(function (rangeInSlots) { return (rangeInSlots && rangeInSlots.end > range.start ? rangeInSlots : null); });
             // 割り当てスロットの決定
@@ -34539,6 +34557,28 @@ var EventRangeDisplayCalculator = /** @class */ (function () {
                 widthPer: allocateSpace.width * 100 / slotsCount,
             };
         });
+        // 干渉を整理
+        var groupLen = 50;
+        var groups = Array(groupLen).fill(null).map(function () { return []; });
+        allocatedRanges.forEach(function (r) {
+            groups[Math.round(r.topPer * 100 / (99 / groupLen))].push(r);
+        });
+        groups.forEach(function (g) {
+            if (g.length <= 1) {
+                return;
+            }
+            // 干渉が起きていないか確認
+            // 干渉が起きていたら右隣りのアイテムの左端の位置まで現在アイテムの右端を寄せる
+            // 最も右のアイテムに操作はしないので <= length - 2
+            for (var i = 0; i <= g.length - 2; i++) {
+                var current = g[i];
+                var next = g[i + 1];
+                if (current.leftPer + current.widthPer > next.leftPer) {
+                    current.widthPer = next.leftPer - current.leftPer;
+                }
+            }
+        });
+        return allocatedRanges;
     };
     return EventRangeDisplayCalculator;
 }());
