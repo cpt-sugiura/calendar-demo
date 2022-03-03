@@ -25,3 +25,7 @@ export const spaceshipEval = (a: number | string, b: number | string): -1 | 0 | 
   }
   return 0;
 };
+
+export const arrUniq = <T>(array: T[]): T[] => {
+  return Array.from(new Set(array));
+};

@@ -84,6 +84,12 @@ const events: { [p: number]: CalenderEventInput[] } = {
       endDate: new Date('2022-02-28 17:00:00'),
       backgroundColor: pallet[1],
     },
+    {
+      title: '〇〇建設様配達先6',
+      startDate: new Date('2022-02-28 14:00:00'),
+      endDate: new Date('2022-02-28 18:00:00'),
+      backgroundColor: pallet[1],
+    },
   ],
 };
 

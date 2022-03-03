@@ -1,4 +1,4 @@
-import {spaceshipEval} from '../calender-helper';
+import {arrUniq, spaceshipEval} from '../calender-helper';
 
 type PrimitiveRange = {
   start: Date;
@@ -71,15 +71,37 @@ export class EventRangeDisplayCalculator<T = {}> {
         return;
       }
       // 干渉が起きていないか確認
-      // 干渉が起きていたら右隣りのアイテムの左端の位置まで現在アイテムの右端を寄せる
+      // 干渉が起きていたら、干渉の連鎖が続いている範囲を取得し、連鎖範囲を等幅割り当てする
       // 最も右のアイテムに操作はしないので <= length - 2
+      const chainList: number[][] = [];
+      let chain: number[]= [];
       for (let i = 0; i <= g.length - 2; i++) {
         const current = g[i];
         const next = g[i + 1]
         if (current.leftPer + current.widthPer > next.leftPer) {
-          current.widthPer = next.leftPer - current.leftPer;
+          chain.push(i);
+          chain.push(i + 1);
+        }else {
+          chainList.push(chain);
+          chain = [];
         }
       }
+      chainList.push(chain);
+      chainList.filter(c => c.length > 0).forEach(chain => {
+        chain = arrUniq(chain);
+        const firstRange = g[chain[0]];
+        const lastRange = g[chain[chain.length-1]];
+        const leftPer = firstRange.leftPer;
+        const widthPer = ((lastRange.leftPer + lastRange.widthPer) - leftPer) / chain.length;
+
+        let nextRangeLeftPer = leftPer;
+        chain.forEach(indexInGroup => {
+          const range = g[indexInGroup];
+          range.leftPer = nextRangeLeftPer;
+          range.widthPer = widthPer;
+          nextRangeLeftPer +=  widthPer;
+        })
+      })
     })
 
     return allocatedRanges;

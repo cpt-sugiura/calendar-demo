@@ -34285,6 +34285,12 @@ var events = (_a = {},
             endDate: new Date('2022-02-28 17:00:00'),
             backgroundColor: pallet[1],
         },
+        {
+            title: '〇〇建設様配達先6',
+            startDate: new Date('2022-02-28 14:00:00'),
+            endDate: new Date('2022-02-28 18:00:00'),
+            backgroundColor: pallet[1],
+        },
     ],
     _a);
 var CalenderDateBody = function (props) {
@@ -34467,7 +34473,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "isToday": () => (/* binding */ isToday),
 /* harmony export */   "includeCurrentTime": () => (/* binding */ includeCurrentTime),
 /* harmony export */   "makeClassName": () => (/* binding */ makeClassName),
-/* harmony export */   "spaceshipEval": () => (/* binding */ spaceshipEval)
+/* harmony export */   "spaceshipEval": () => (/* binding */ spaceshipEval),
+/* harmony export */   "arrUniq": () => (/* binding */ arrUniq)
 /* harmony export */ });
 var isToday = function (d) {
     var today = new Date();
@@ -34491,6 +34498,9 @@ var spaceshipEval = function (a, b) {
         return 1;
     }
     return 0;
+};
+var arrUniq = function (array) {
+    return Array.from(new Set(array));
 };
 
 
@@ -34568,15 +34578,37 @@ var EventRangeDisplayCalculator = /** @class */ (function () {
                 return;
             }
             // 干渉が起きていないか確認
-            // 干渉が起きていたら右隣りのアイテムの左端の位置まで現在アイテムの右端を寄せる
+            // 干渉が起きていたら、干渉の連鎖が続いている範囲を取得し、連鎖範囲を等幅割り当てする
             // 最も右のアイテムに操作はしないので <= length - 2
+            var chainList = [];
+            var chain = [];
             for (var i = 0; i <= g.length - 2; i++) {
                 var current = g[i];
                 var next = g[i + 1];
                 if (current.leftPer + current.widthPer > next.leftPer) {
-                    current.widthPer = next.leftPer - current.leftPer;
+                    chain.push(i);
+                    chain.push(i + 1);
+                }
+                else {
+                    chainList.push(chain);
+                    chain = [];
                 }
             }
+            chainList.push(chain);
+            chainList.filter(function (c) { return c.length > 0; }).forEach(function (chain) {
+                chain = (0,_calender_helper__WEBPACK_IMPORTED_MODULE_0__.arrUniq)(chain);
+                var firstRange = g[chain[0]];
+                var lastRange = g[chain[chain.length - 1]];
+                var leftPer = firstRange.leftPer;
+                var widthPer = ((lastRange.leftPer + lastRange.widthPer) - leftPer) / chain.length;
+                var nextRangeLeftPer = leftPer;
+                chain.forEach(function (indexInGroup) {
+                    var range = g[indexInGroup];
+                    range.leftPer = nextRangeLeftPer;
+                    range.widthPer = widthPer;
+                    nextRangeLeftPer += widthPer;
+                });
+            });
         });
         return allocatedRanges;
     };
