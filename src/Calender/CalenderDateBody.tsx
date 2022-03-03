@@ -7,7 +7,7 @@ import { CalenderTimeMarker } from './CalenderTimeMarker';
 import { includeCurrentTime, isToday } from './calender-helper';
 
 const dateInitForDemo = new Date().getDate();
-const pallet = ['#b8f9ba', '#ccddff', '#dfdfdf'];
+const pallet = ['#b8f9baaa', '#ccddffaa', '#dfdfdfaa'];
 const events: { [p: number]: CalenderEventInput[] } = {
   [dateInitForDemo]: [
     {
@@ -33,6 +33,12 @@ const events: { [p: number]: CalenderEventInput[] } = {
       startDate: new Date('2022-02-28 10:30:00'),
       endDate: new Date('2022-02-28 17:00:00'),
       backgroundColor: pallet[1],
+    },
+    {
+      title: '〇〇建設様配達先5',
+      startDate: new Date('2022-02-28 10:30:00'),
+      endDate: new Date('2022-02-28 17:00:00'),
+      backgroundColor: pallet[0],
     },
     {
       title: '〇〇建設様配達先6',
@@ -134,18 +140,17 @@ export const CalenderDateBody: React.FC<CalenderDateBodyProps> = (props) => {
               })
             )
               .getDateRangeWithDisplay()
-              .map((e, i) => {
-                const simpleModel = events[d.date.getDate()][i];
+              .map((event) => {
                 return (
                   <CalenderEvent
-                    key={`${d.date.getDate()}-${simpleModel.title}`}
-                    event={simpleModel}
+                    key={`${d.date.getDate()}-${event.title}`}
+                    event={event}
                     style={{
-                      top: e.topPer * tbodyHeight,
-                      height: e.heightPer * tbodyHeight,
-                      backgroundColor: simpleModel.backgroundColor,
-                      left: `${e.leftPer}%`,
-                      width: `${e.widthPer}%`,
+                      top: event.topPer * tbodyHeight,
+                      height: event.heightPer * tbodyHeight,
+                      backgroundColor: event.backgroundColor,
+                      left: `${event.leftPer}%`,
+                      width: `${event.widthPer}%`,
                     }}
                   />
                 );

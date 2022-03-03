@@ -20,9 +20,9 @@ export class EventRangeDisplayCalculator<T = {}> {
     this.dateRangeList = dateRangeList;
   }
 
-  public getDateRangeWithDisplay(): DateRangeRet[] {
+  public getDateRangeWithDisplay(): Array<DateRangeRet & T> {
     // 開始日時昇順
-    const startAsc: Array<Partial<DateRangeRet> & PrimitiveRange & Omit<DateRangeRet, 'widthPer' | 'leftPer'>> =
+    const startAsc: Array<Partial<DateRangeRet> & T & PrimitiveRange & Omit<DateRangeRet, 'widthPer' | 'leftPer'>> =
       this.dateRangeList
         .sort((a, b) => spaceshipEval(a.start.getTime(), b.start.getTime()))
         .map((range) => this.setTopAndHeight(range));
@@ -34,7 +34,7 @@ export class EventRangeDisplayCalculator<T = {}> {
     return allocatedRanges;
   }
 
-  private avoidOverlapSpace(allocatedRanges: DateRangeRet[]): void {
+  private avoidOverlapSpace(allocatedRanges:  Array<DateRangeRet & T>): void {
     // 干渉を整理
     // どこまで干渉を避けるか。この値を小さくすると多少時刻差があっても、グループ化する。
     // todo グループの末尾とグループの始点の衝突について解決していない
@@ -81,11 +81,11 @@ export class EventRangeDisplayCalculator<T = {}> {
     })
   }
 
-  private getBaseAllocatedRanges(rangeOrderByStartAsc: Array<Partial<DateRangeRet> & PrimitiveRange & Omit<DateRangeRet, "widthPer" | "leftPer">>) {
+  private getBaseAllocatedRanges(rangeOrderByStartAsc: Array<Partial<DateRangeRet> & T & PrimitiveRange & Omit<DateRangeRet, "widthPer" | "leftPer">>):  Array<DateRangeRet & T> {
     const slotsCount = this.dateRangeList.length;
     // 描画箇所を割り当て済みかつループ内で参照している範囲と被りうる範囲を貯める
     let slots: Array<PrimitiveRange | null> = Array(this.dateRangeList.length).fill(null);
-    return rangeOrderByStartAsc.map((range): DateRangeRet => {
+    return rangeOrderByStartAsc.map((range):  DateRangeRet & T => {
       // 現在参照している範囲と被らないスロット割り当て済み範囲をnull埋め。スロットを空ける
       slots = slots.map((rangeInSlots) => (rangeInSlots && rangeInSlots.end > range.start ? rangeInSlots : null));
       // 割り当てスロットの決定
@@ -97,6 +97,7 @@ export class EventRangeDisplayCalculator<T = {}> {
       slots[allocateSpace.start] = range;
       // 描画範囲を追加した要素を返す
       return {
+        ...range,
         start: range.start,
         end: range.end,
         heightPer: range.heightPer,
@@ -107,7 +108,7 @@ export class EventRangeDisplayCalculator<T = {}> {
     });
   }
 
-  private setTopAndHeight(range: PrimitiveRange & T): Partial<DateRangeRet> & PrimitiveRange & Omit<DateRangeRet, 'widthPer' | 'leftPer'> {
+  private setTopAndHeight(range: PrimitiveRange & T): Partial<DateRangeRet> & T & PrimitiveRange & Omit<DateRangeRet, 'widthPer' | 'leftPer'> {
     // 高さは確定済みなのでここで記述
     const startSec = range.start.getHours() * 60 * 60 + range.start.getMinutes() * 60 + range.start.getSeconds();
     const endSec = range.end.getHours() * 60 * 60 + range.end.getMinutes() * 60 + range.end.getSeconds();

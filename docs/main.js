@@ -34208,7 +34208,7 @@ var _a;
 
 
 var dateInitForDemo = new Date().getDate();
-var pallet = ['#b8f9ba', '#ccddff', '#dfdfdf'];
+var pallet = ['#b8f9baaa', '#ccddffaa', '#dfdfdfaa'];
 var events = (_a = {},
     _a[dateInitForDemo] = [
         {
@@ -34234,6 +34234,12 @@ var events = (_a = {},
             startDate: new Date('2022-02-28 10:30:00'),
             endDate: new Date('2022-02-28 17:00:00'),
             backgroundColor: pallet[1],
+        },
+        {
+            title: '〇〇建設様配達先5',
+            startDate: new Date('2022-02-28 10:30:00'),
+            endDate: new Date('2022-02-28 17:00:00'),
+            backgroundColor: pallet[0],
         },
         {
             title: '〇〇建設様配達先6',
@@ -34321,14 +34327,13 @@ var CalenderDateBody = function (props) {
                     return __assign(__assign({}, d), { start: d.startDate, end: d.endDate });
                 }))
                     .getDateRangeWithDisplay()
-                    .map(function (e, i) {
-                    var simpleModel = events[d.date.getDate()][i];
-                    return (react__WEBPACK_IMPORTED_MODULE_1__.createElement(_CalenderEvent__WEBPACK_IMPORTED_MODULE_2__.CalenderEvent, { key: "".concat(d.date.getDate(), "-").concat(simpleModel.title), event: simpleModel, style: {
-                            top: e.topPer * tbodyHeight,
-                            height: e.heightPer * tbodyHeight,
-                            backgroundColor: simpleModel.backgroundColor,
-                            left: "".concat(e.leftPer, "%"),
-                            width: "".concat(e.widthPer, "%"),
+                    .map(function (event) {
+                    return (react__WEBPACK_IMPORTED_MODULE_1__.createElement(_CalenderEvent__WEBPACK_IMPORTED_MODULE_2__.CalenderEvent, { key: "".concat(d.date.getDate(), "-").concat(event.title), event: event, style: {
+                            top: event.topPer * tbodyHeight,
+                            height: event.heightPer * tbodyHeight,
+                            backgroundColor: event.backgroundColor,
+                            left: "".concat(event.leftPer, "%"),
+                            width: "".concat(event.widthPer, "%"),
                         } }));
                 })));
             })),
@@ -34612,14 +34617,7 @@ var EventRangeDisplayCalculator = /** @class */ (function () {
             var allocateSpace = spaces[0];
             slots[allocateSpace.start] = range;
             // 描画範囲を追加した要素を返す
-            return {
-                start: range.start,
-                end: range.end,
-                heightPer: range.heightPer,
-                leftPer: allocateSpace.start * 100 / slotsCount,
-                topPer: range.topPer,
-                widthPer: allocateSpace.width * 100 / slotsCount,
-            };
+            return __assign(__assign({}, range), { start: range.start, end: range.end, heightPer: range.heightPer, leftPer: allocateSpace.start * 100 / slotsCount, topPer: range.topPer, widthPer: allocateSpace.width * 100 / slotsCount });
         });
     };
     EventRangeDisplayCalculator.prototype.setTopAndHeight = function (range) {
