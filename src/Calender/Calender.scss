@@ -52,6 +52,7 @@
 
       td {
         border: $border;
+        background-clip: padding-box;
         height: 3em;
         position: relative;
 

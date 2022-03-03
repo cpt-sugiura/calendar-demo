@@ -1,8 +1,6 @@
 import {
   arrUniq,
-  withoutEventMonospace,
   spaceshipEval,
-  fitSpace
 } from '../calender-helper';
 
 type PrimitiveRange = {
@@ -34,7 +32,22 @@ export class EventRangeDisplayCalculator<T = {}> {
     // ベースとなる幅と開始地点を決定。この時点ではどの要素も参照時点で空いている空間を全力で使っている
     const allocatedRanges = this.getBaseAllocatedRanges(startAsc);
     // 全力で使った結果、見難くなる使用空間の過度な被りを減らす
-    !withoutEventMonospace() && this.avoidOverlapSpace(allocatedRanges);
+    this.avoidOverlapSpace(allocatedRanges);
+
+    const slotsCount = this.getSlotCount();
+    allocatedRanges.forEach((currentRange) => {
+      const needRefRanges = allocatedRanges.filter(ar => (ar && ar.end > currentRange.start));
+      const currentRightPer = currentRange.leftPer + currentRange.widthPer;
+      needRefRanges.forEach(refRange => {
+        const nrRightPer = refRange.leftPer + refRange.widthPer;
+        if(refRange.end <= currentRange.end) {
+          if (currentRange.leftPer < refRange.leftPer && nrRightPer < currentRightPer) {
+            currentRange.widthPer = nrRightPer - 100 / slotsCount - currentRange.leftPer;
+          }
+        }
+      })
+
+    });
 
     return allocatedRanges;
   }
@@ -93,9 +106,7 @@ export class EventRangeDisplayCalculator<T = {}> {
   private getBaseAllocatedRanges(
     rangeOrderByStartAsc: Array<Partial<DateRangeRet> & T & PrimitiveRange & Omit<DateRangeRet, 'widthPer' | 'leftPer'>>
   ): Array<DateRangeRet & T> {
-    const slotsCount = fitSpace()
-      ? (this.dateRangeList.length === 5 ? 3 : 5)
-      : this.dateRangeList.length;
+    const slotsCount = this.dateRangeList.length;
     // 描画箇所を割り当て済みかつループ内で参照している範囲と被りうる範囲を貯める
     let slots: Array<PrimitiveRange | null> = Array(slotsCount).fill(null);
     return rangeOrderByStartAsc.map((range): DateRangeRet & T => {
@@ -119,6 +130,9 @@ export class EventRangeDisplayCalculator<T = {}> {
         widthPer: (allocateSpace.width * 100) / slotsCount,
       };
     });
+  }
+  private getSlotCount() {
+    return this.dateRangeList.length;
   }
 
   private setTopAndHeight(

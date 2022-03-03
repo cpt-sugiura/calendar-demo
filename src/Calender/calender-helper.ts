@@ -37,19 +37,3 @@ const getParams = () => {
   });
   return ret;
 };
-
-export const isBackgroundAlpha = () => {
-  return getParams().isBackgroundAlpha === '1';
-};
-
-export const withoutBorderOverlap = () => {
-  return getParams().withoutBorderOverlap === '1';
-};
-
-export const withoutEventMonospace = () => {
-  return getParams().withoutEventMonospace === '1';
-};
-
-export const fitSpace = () => {
-  return withoutEventMonospace() && getParams().fitSpace === '1';
-};
