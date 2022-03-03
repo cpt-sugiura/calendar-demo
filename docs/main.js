@@ -34132,7 +34132,7 @@ var Calender = function () {
     var ComponentMap = {
         CURRENT_WEEK: react__WEBPACK_IMPORTED_MODULE_0__.createElement(CurrentWeekCalender, null),
         NEXT_WEEK: react__WEBPACK_IMPORTED_MODULE_0__.createElement(NextWeekCalender, null),
-        TODAY: react__WEBPACK_IMPORTED_MODULE_0__.createElement(TodayCalender, null)
+        TODAY: react__WEBPACK_IMPORTED_MODULE_0__.createElement(TodayCalender, null),
     };
     return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'calender' },
         react__WEBPACK_IMPORTED_MODULE_0__.createElement(_CalenderHeader__WEBPACK_IMPORTED_MODULE_1__.CalenderHeader, { onChangeDisplayType: function (e) { return setDisplayType(e); } }),
@@ -34149,9 +34149,8 @@ var CurrentWeekCalender = function () {
         if (!wrapperRef.current) {
             return;
         }
-        var currentSec = (new Date()).getHours() * 60 * 60 + (new Date()).getMinutes() * 60 + (new Date()).getSeconds();
-        var to = (currentSec - 4800) / (24 * 60 * 60) * wrapperRef.current.scrollHeight;
-        console.log({ currentSec: currentSec, to: to });
+        var currentSec = new Date().getHours() * 60 * 60 + new Date().getMinutes() * 60 + new Date().getSeconds();
+        var to = ((currentSec - 4800) / (24 * 60 * 60)) * wrapperRef.current.scrollHeight;
         wrapperRef.current.scrollTo({
             top: to,
             left: 0,
@@ -34197,24 +34196,23 @@ var _a;
 
 
 
-var dateInitForDemo = (new Date()).getDate();
-var pallet = [
-    '#b8f9ba88',
-    '#ccddff88',
-    '#dfdfdf88',
-];
+var dateInitForDemo = new Date().getDate();
+var pallet = ['#b8f9ba88', '#ccddff88', '#dfdfdf88'];
 var events = (_a = {},
-    _a[dateInitForDemo] = [{
+    _a[dateInitForDemo] = [
+        {
             title: '〇〇建設様配達先',
             startDate: new Date('2022-02-28 09:00:00'),
             endDate: new Date('2022-02-28 11:00:00'),
             backgroundColor: pallet[0],
-        }, {
+        },
+        {
             title: '〇〇建設様配達先2',
             startDate: new Date('2022-02-28 10:00:00'),
             endDate: new Date('2022-02-28 12:45:00'),
             backgroundColor: pallet[1],
-        }, {
+        },
+        {
             title: '〇〇建設様配達先3',
             startDate: new Date('2022-02-28 13:00:00'),
             endDate: new Date('2022-02-28 15:00:00'),
@@ -34225,24 +34223,28 @@ var events = (_a = {},
             startDate: new Date('2022-02-28 10:30:00'),
             endDate: new Date('2022-02-28 17:00:00'),
             backgroundColor: pallet[1],
-        }, {
+        },
+        {
             title: '〇〇建設様配達先5',
             startDate: new Date('2022-02-28 16:30:00'),
             endDate: new Date('2022-02-28 18:00:00'),
             backgroundColor: pallet[1],
-        }, {
+        },
+        {
             title: '〇〇建設様配達先6',
             startDate: new Date('2022-02-28 16:45:00'),
             endDate: new Date('2022-02-28 19:00:00'),
             backgroundColor: pallet[1],
         },
     ],
-    _a[dateInitForDemo + 1] = [{
+    _a[dateInitForDemo + 1] = [
+        {
             title: '〇〇建設様配達先',
             startDate: new Date('2022-02-28 14:30:00'),
             endDate: new Date('2022-02-28 16:45:00'),
             backgroundColor: pallet[0],
-        }],
+        },
+    ],
     _a);
 var CalenderDateBody = function (props) {
     var tbodyRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
@@ -34262,22 +34264,23 @@ var CalenderDateBody = function (props) {
             react__WEBPACK_IMPORTED_MODULE_1__.createElement("td", { style: { height: 0, border: 'none' } }),
             props.calenderDates.map(function (d) {
                 var _a;
-                return react__WEBPACK_IMPORTED_MODULE_1__.createElement("td", { className: 'event-cell', key: d.date.toISOString(), style: { position: 'relative' } }, (new _service_EventRangeDisplayCalculator__WEBPACK_IMPORTED_MODULE_3__.EventRangeDisplayCalculator(((_a = events[d.date.getDate()]) !== null && _a !== void 0 ? _a : []).map(function (d) {
+                return (react__WEBPACK_IMPORTED_MODULE_1__.createElement("td", { className: 'event-cell', key: d.date.toISOString(), style: { position: 'relative' } }, new _service_EventRangeDisplayCalculator__WEBPACK_IMPORTED_MODULE_3__.EventRangeDisplayCalculator(((_a = events[d.date.getDate()]) !== null && _a !== void 0 ? _a : []).map(function (d) {
                     return {
                         start: d.startDate,
-                        end: d.endDate
+                        end: d.endDate,
                     };
-                }))).getDateRangeWithDisplay()
+                }))
+                    .getDateRangeWithDisplay()
                     .map(function (e, i) {
                     var simpleModel = events[d.date.getDate()][i];
-                    return react__WEBPACK_IMPORTED_MODULE_1__.createElement(_CalenderEvent__WEBPACK_IMPORTED_MODULE_2__.CalenderEvent, { key: "".concat(d.date.getDate(), "-").concat(simpleModel.title), event: simpleModel, style: {
+                    return (react__WEBPACK_IMPORTED_MODULE_1__.createElement(_CalenderEvent__WEBPACK_IMPORTED_MODULE_2__.CalenderEvent, { key: "".concat(d.date.getDate(), "-").concat(simpleModel.title), event: simpleModel, style: {
                             top: e.topPer * tbodyHeight,
                             height: e.heightPer * tbodyHeight,
                             backgroundColor: simpleModel.backgroundColor,
                             left: "".concat(e.leftPer, "%"),
                             width: "".concat(e.widthPer, "%"),
-                        } });
-                }));
+                        } }));
+                })));
             })),
         props.dateStructs.map(function (dateStruct) { return (react__WEBPACK_IMPORTED_MODULE_1__.createElement("tr", { key: dateStruct.hour },
             react__WEBPACK_IMPORTED_MODULE_1__.createElement("td", { className: 'hour-label-cell' },
@@ -34291,8 +34294,8 @@ var CalenderDateBody = function (props) {
                     d.date.getDay() === _types_Date__WEBPACK_IMPORTED_MODULE_0__.DayMap.SUNDAY ? 'sunday' : '',
                 ]
                     .join(' ')
-                    .trim() }, ((0,_calender_helper__WEBPACK_IMPORTED_MODULE_5__.isToday)(d.date) && (0,_calender_helper__WEBPACK_IMPORTED_MODULE_5__.includeCurrentTime)(dateStruct.hour, dateStruct.hour + 1)) && (react__WEBPACK_IMPORTED_MODULE_1__.createElement(_CalenderTimeMarker__WEBPACK_IMPORTED_MODULE_4__.CalenderTimeMarker, { style: {
-                    top: "".concat((new Date).getMinutes() / 60 * 100, "%")
+                    .trim() }, (0,_calender_helper__WEBPACK_IMPORTED_MODULE_5__.isToday)(d.date) && (0,_calender_helper__WEBPACK_IMPORTED_MODULE_5__.includeCurrentTime)(dateStruct.hour, dateStruct.hour + 1) && (react__WEBPACK_IMPORTED_MODULE_1__.createElement(_CalenderTimeMarker__WEBPACK_IMPORTED_MODULE_4__.CalenderTimeMarker, { style: {
+                    top: "".concat((new Date().getMinutes() / 60) * 100, "%"),
                 } })))); }))); })));
 };
 
@@ -34321,17 +34324,11 @@ var CalenderDateHeader = function (props) {
     return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("thead", { className: 'date-header' },
         react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", null,
             react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null),
-            props.calenderDates.map(function (d) { return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", { key: d.date.toISOString(), className: (0,_calender_helper__WEBPACK_IMPORTED_MODULE_1__.makeClassName)([
-                    'date-header-day-cell',
-                    (0,_calender_helper__WEBPACK_IMPORTED_MODULE_1__.isToday)(d.date) ? 'today' : ''
-                ]) },
+            props.calenderDates.map(function (d) { return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", { key: d.date.toISOString(), className: (0,_calender_helper__WEBPACK_IMPORTED_MODULE_1__.makeClassName)(['date-header-day-cell', (0,_calender_helper__WEBPACK_IMPORTED_MODULE_1__.isToday)(d.date) ? 'today' : '']) },
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, (0,date_fns__WEBPACK_IMPORTED_MODULE_2__["default"])(d.date, 'eee', { locale: date_fns_locale__WEBPACK_IMPORTED_MODULE_3__["default"] })))); })),
         react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", null,
             react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null),
-            props.calenderDates.map(function (d) { return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", { key: d.date.toISOString(), className: (0,_calender_helper__WEBPACK_IMPORTED_MODULE_1__.makeClassName)([
-                    'date-header-date-cell',
-                    (0,_calender_helper__WEBPACK_IMPORTED_MODULE_1__.isToday)(d.date) ? 'today' : ''
-                ]) },
+            props.calenderDates.map(function (d) { return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", { key: d.date.toISOString(), className: (0,_calender_helper__WEBPACK_IMPORTED_MODULE_1__.makeClassName)(['date-header-date-cell', (0,_calender_helper__WEBPACK_IMPORTED_MODULE_1__.isToday)(d.date) ? 'today' : '']) },
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", { className: 'invisible-for-width' }, "00"),
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'date-text' },
                     react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, (0,date_fns__WEBPACK_IMPORTED_MODULE_2__["default"])(d.date, 'd', { locale: date_fns_locale__WEBPACK_IMPORTED_MODULE_3__["default"] }))))); }))));
@@ -34413,9 +34410,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var CalenderTimeMarker = function (_a) {
     var style = _a.style;
-    return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'calender-current-time-marker', style: style },
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'calender-current-time-marker', style: style },
         react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'circle' }),
-        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'bar' }));
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'bar' })));
 };
 
 
@@ -34436,16 +34433,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var isToday = function (d) {
     var today = new Date();
-    return d.getFullYear() === today.getFullYear() && d.getMonth() === today.getMonth() && d.getDate() === today.getDate();
+    return (d.getFullYear() === today.getFullYear() && d.getMonth() === today.getMonth() && d.getDate() === today.getDate());
 };
 var includeCurrentTime = function (startHour, endHour) {
     var today = new Date();
-    var start = new Date("".concat((new Date()).toDateString(), " ").concat(startHour, ":00:00"));
-    var end = new Date("".concat((new Date()).toDateString(), " ").concat(endHour, ":00:00"));
+    var start = new Date("".concat(new Date().toDateString(), " ").concat(startHour, ":00:00"));
+    var end = new Date("".concat(new Date().toDateString(), " ").concat(endHour, ":00:00"));
     return start <= today && today <= end;
 };
 var makeClassName = function (classNameList) {
-    return classNameList.join(" ").trim();
+    return classNameList.join(' ').trim();
 };
 /** PHP の宇宙船演算子。ソートメソッドで使うと便利 */
 var spaceshipEval = function (a, b) {
@@ -34505,15 +34502,29 @@ var EventRangeDisplayCalculator = /** @class */ (function () {
         var slotsCount = this.dateRangeList.length;
         // 描画箇所を割り当て済みかつループ内で参照している範囲と被りうる範囲を貯める
         var stackRange = [];
+        var slots = Array(this.dateRangeList.length).fill(null);
         return startAsc.map(function (range) {
             var _a, _b;
             // 現在参照している範囲と被らないスタックしている範囲を除去
-            stackRange = stackRange.filter(function (rangeInStack) { return rangeInStack.end > range.start; });
-            // スタックしている範囲の分、幅と開始地点をずらす
-            range.widthPer = 100 / slotsCount * (slotsCount - stackRange.length);
-            range.leftPer = 100 - range.widthPer;
-            // スタックに現在参照している範囲を追加
-            stackRange.push(__assign({}, range));
+            slots = slots.map(function (rangeInSlots) { return (rangeInSlots && rangeInSlots.end > range.start ? rangeInSlots : null); });
+            try {
+                slots.forEach(function (allocateRange, index) {
+                    if (allocateRange) {
+                        return;
+                    }
+                    slots[index] = range;
+                    var marginRight = slots.slice(index + 1).filter(function (r) { return !!r; }).length;
+                    // スタックしている範囲の分、幅と開始地点をずらす
+                    range.leftPer = (index * 100) / slotsCount;
+                    range.widthPer = 100 - range.leftPer - (marginRight * 100) / slotsCount;
+                    throw 'break';
+                });
+            }
+            catch (e) {
+                if (e !== 'break') {
+                    throw e;
+                }
+            }
             // 描画範囲を追加した要素を返す
             return {
                 start: range.start,

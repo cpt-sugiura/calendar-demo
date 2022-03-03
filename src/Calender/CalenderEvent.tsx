@@ -1,14 +1,14 @@
-import React, {CSSProperties} from 'react';
+import React, { CSSProperties } from 'react';
 
 export type CalenderEventInput = {
   startDate: Date;
   endDate: Date;
-  title: string
-  backgroundColor: CSSProperties['backgroundColor']
+  title: string;
+  backgroundColor: CSSProperties['backgroundColor'];
 };
 type CalenderEventProps = {
   event: CalenderEventInput;
-  style?: CSSProperties
+  style?: CSSProperties;
 };
 export const CalenderEvent: React.FC<CalenderEventProps> = (props) => {
   return (

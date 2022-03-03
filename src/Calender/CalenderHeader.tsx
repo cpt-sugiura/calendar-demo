@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import {useDateTimeFormatters} from "./useDateTimeFormatters";
+import { useDateTimeFormatters } from './useDateTimeFormatters';
 type HeaderProps = {
   onChangeDisplayType: DisplaySelectorRadioBoxProps['onChange'];
 };
 export const CalenderHeader: React.FC<HeaderProps> = (props) => {
-  const {dateFormatter} = useDateTimeFormatters();
+  const { dateFormatter } = useDateTimeFormatters();
   return (
     <div className={'calender-header'}>
       <h3>{dateFormatter(new Date())}</h3>
