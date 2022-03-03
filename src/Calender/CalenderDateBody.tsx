@@ -7,7 +7,7 @@ import { CalenderTimeMarker } from './CalenderTimeMarker';
 import { includeCurrentTime, isToday } from './calender-helper';
 
 const dateInitForDemo = new Date().getDate();
-const pallet = ['#b8f9baaa', '#ccddffaa', '#dfdfdfaa'];
+const pallet = ['#b8f9ba', '#ccddff', '#dfdfdf'];
 const events: { [p: number]: CalenderEventInput[] } = {
   [dateInitForDemo]: [
     {
@@ -39,6 +39,12 @@ const events: { [p: number]: CalenderEventInput[] } = {
       startDate: new Date('2022-02-28 10:30:00'),
       endDate: new Date('2022-02-28 17:00:00'),
       backgroundColor: pallet[0],
+    },
+    {
+      title: '〇〇建設様配達先10',
+      startDate: new Date('2022-02-28 10:30:00'),
+      endDate: new Date('2022-02-28 15:30:00'),
+      backgroundColor: pallet[1],
     },
     {
       title: '〇〇建設様配達先6',
@@ -80,8 +86,8 @@ const events: { [p: number]: CalenderEventInput[] } = {
     },
     {
       title: '〇〇建設様配達先5',
-      startDate: new Date('2022-02-28 10:30:00'),
-      endDate: new Date('2022-02-28 12:00:00'),
+      startDate: new Date('2022-02-28 10:45:00'),
+      endDate: new Date('2022-02-28 12:15:00'),
       backgroundColor: pallet[1],
     },
     {

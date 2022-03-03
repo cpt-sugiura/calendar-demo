@@ -34208,7 +34208,7 @@ var _a;
 
 
 var dateInitForDemo = new Date().getDate();
-var pallet = ['#b8f9baaa', '#ccddffaa', '#dfdfdfaa'];
+var pallet = ['#b8f9ba', '#ccddff', '#dfdfdf'];
 var events = (_a = {},
     _a[dateInitForDemo] = [
         {
@@ -34240,6 +34240,12 @@ var events = (_a = {},
             startDate: new Date('2022-02-28 10:30:00'),
             endDate: new Date('2022-02-28 17:00:00'),
             backgroundColor: pallet[0],
+        },
+        {
+            title: '〇〇建設様配達先10',
+            startDate: new Date('2022-02-28 10:30:00'),
+            endDate: new Date('2022-02-28 15:30:00'),
+            backgroundColor: pallet[1],
         },
         {
             title: '〇〇建設様配達先6',
@@ -34281,8 +34287,8 @@ var events = (_a = {},
         },
         {
             title: '〇〇建設様配達先5',
-            startDate: new Date('2022-02-28 10:30:00'),
-            endDate: new Date('2022-02-28 12:00:00'),
+            startDate: new Date('2022-02-28 10:45:00'),
+            endDate: new Date('2022-02-28 12:15:00'),
             backgroundColor: pallet[1],
         },
         {
@@ -34560,7 +34566,7 @@ var EventRangeDisplayCalculator = /** @class */ (function () {
         // 干渉を整理
         // どこまで干渉を避けるか。この値を小さくすると多少時刻差があっても、グループ化する。
         // todo グループの末尾とグループの始点の衝突について解決していない
-        var groupLen = 50;
+        var groupLen = 100 / (60 / 15); // 20分単位でグループ化
         var groups = Array(groupLen).fill(null).map(function () { return []; });
         // group by topPer
         allocatedRanges.forEach(function (r) { return groups[Math.round(r.topPer * 100 / (99 / groupLen))].push(r); });

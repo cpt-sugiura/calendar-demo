@@ -38,7 +38,7 @@ export class EventRangeDisplayCalculator<T = {}> {
     // 干渉を整理
     // どこまで干渉を避けるか。この値を小さくすると多少時刻差があっても、グループ化する。
     // todo グループの末尾とグループの始点の衝突について解決していない
-    const groupLen = 50;
+    const groupLen = 100 / (60 / 15);// 20分単位でグループ化
     const groups: DateRangeRet[][] = Array(groupLen).fill(null).map(() => []);
     // group by topPer
     allocatedRanges.forEach(r => groups[Math.round(r.topPer * 100 / (99 / groupLen))].push(r));
