@@ -1,4 +1,5 @@
 import React, { CSSProperties } from 'react';
+import { withoutBorderOverlap, makeClassName } from './calender-helper';
 
 export type CalenderEventInput = {
   startDate: Date;
@@ -12,9 +13,12 @@ type CalenderEventProps = {
 };
 export const CalenderEvent: React.FC<CalenderEventProps> = (props) => {
   return (
-    <div className={'calender-event'} style={props?.style}>
-      <div>
-        <i>{props.event.title}</i>
+    <div
+      className={makeClassName(['calender-event', withoutBorderOverlap() ? '' : 'overlap-border'])}
+      style={props?.style}
+    >
+      <div className={'calender-event-front'}>
+        <div>{props.event.title}</div>
       </div>
     </div>
   );

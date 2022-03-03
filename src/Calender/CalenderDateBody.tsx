@@ -1,13 +1,13 @@
-import { CalenderDate, DayMap } from './@types/Date';
+import { CalenderDate, SATURDAY, SUNDAY } from './@types/Date';
 import React, { useEffect, useRef, useState } from 'react';
 import { DateStruct } from './useDate';
 import { CalenderEvent, CalenderEventInput } from './CalenderEvent';
 import { EventRangeDisplayCalculator } from './service/EventRangeDisplayCalculator';
 import { CalenderTimeMarker } from './CalenderTimeMarker';
-import { includeCurrentTime, isToday } from './calender-helper';
+import { includeCurrentTime, isBackgroundAlpha, isToday } from './calender-helper';
 
 const dateInitForDemo = new Date().getDate();
-const pallet = ['#b8f9ba', '#ccddff', '#dfdfdf'];
+const pallet = isBackgroundAlpha() ? ['#b8f9ba88', '#ccddff88', '#dfdfdf88'] : ['#b8f9ba', '#ccddff', '#dfdfdf'];
 const events: { [p: number]: CalenderEventInput[] } = {
   [dateInitForDemo]: [
     {
@@ -102,12 +102,6 @@ const events: { [p: number]: CalenderEventInput[] } = {
       endDate: new Date('2022-02-28 17:00:00'),
       backgroundColor: pallet[1],
     },
-    {
-      title: '〇〇建設様配達先6',
-      startDate: new Date('2022-02-28 14:00:00'),
-      endDate: new Date('2022-02-28 18:00:00'),
-      backgroundColor: pallet[1],
-    },
   ],
 };
 
@@ -177,8 +171,8 @@ export const CalenderDateBody: React.FC<CalenderDateBodyProps> = (props) => {
                 'calender-date-cell',
                 d.date.toISOString(),
                 d.isHoliday ? 'holiday' : '',
-                d.date.getDay() === DayMap['SATURDAY'] ? 'saturday' : '',
-                d.date.getDay() === DayMap['SUNDAY'] ? 'sunday' : '',
+                d.date.getDay() === SATURDAY ? 'saturday' : '',
+                d.date.getDay() === SUNDAY ? 'sunday' : '',
               ]
                 .join(' ')
                 .trim()}

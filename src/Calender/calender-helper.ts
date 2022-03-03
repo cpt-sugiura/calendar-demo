@@ -29,3 +29,23 @@ export const spaceshipEval = (a: number | string, b: number | string): -1 | 0 | 
 export const arrUniq = <T>(array: T[]): T[] => {
   return Array.from(new Set(array));
 };
+
+const getParams = () => {
+  const ret: { [p: string]: string } = {};
+  new URLSearchParams(window.location.href).forEach((v, k) => {
+    ret[k] = v;
+  });
+  return ret;
+};
+
+export const isBackgroundAlpha = () => {
+  return getParams().isBackgroundAlpha === '1';
+};
+
+export const withoutBorderOverlap = () => {
+  return getParams().withoutBorderOverlap === '1';
+};
+
+export const withoutEventMonospace = () => {
+  return getParams().withoutEventMonospace === '1';
+};
