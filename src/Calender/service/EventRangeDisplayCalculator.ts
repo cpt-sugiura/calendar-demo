@@ -25,22 +25,66 @@ export class EventRangeDisplayCalculator<T = {}> {
     const startAsc: Array<Partial<DateRangeRet> & PrimitiveRange & Omit<DateRangeRet, 'widthPer' | 'leftPer'>> =
       this.dateRangeList
         .sort((a, b) => spaceshipEval(a.start.getTime(), b.start.getTime()))
-        .map((range) => {
-          // 高さは確定済みなのでここで記述
-          const startSec = range.start.getHours() * 60 * 60 + range.start.getMinutes() * 60 + range.start.getSeconds();
-          const endSec = range.end.getHours() * 60 * 60 + range.end.getMinutes() * 60 + range.end.getSeconds();
-          return {
-            ...range,
-            topPer: startSec / (24 * 60 * 60),
-            heightPer: (endSec - startSec) / (24 * 60 * 60),
-          };
-        });
+        .map((range) => this.setTopAndHeight(range));
+    // ベースとなる幅と開始地点を決定。この時点ではどの要素も参照時点で空いている空間を全力で使っている
+    const allocatedRanges = this.getBaseAllocatedRanges(startAsc);
+    // 全力で使った結果、見難くなる使用空間の過度な被りを減らす
+    this.avoidOverlapSpace(allocatedRanges);
 
-    // 幅と開始地点を決定
+    return allocatedRanges;
+  }
+
+  private avoidOverlapSpace(allocatedRanges: DateRangeRet[]): void {
+    // 干渉を整理
+    // どこまで干渉を避けるか。この値を小さくすると多少時刻差があっても、グループ化する。
+    // todo グループの末尾とグループの始点の衝突について解決していない
+    const groupLen = 50;
+    const groups: DateRangeRet[][] = Array(groupLen).fill(null).map(() => []);
+    // group by topPer
+    allocatedRanges.forEach(r => groups[Math.round(r.topPer * 100 / (99 / groupLen))].push(r));
+    // group 内で要素をみることによって干渉が起きていないか確認
+    // 干渉が起きていたら、干渉の連鎖が続いている範囲を取得し、連鎖範囲を等幅割り当てする
+    groups.forEach(g => {
+      if (g.length <= 1) {
+        return;
+      }
+      // 最も右のアイテムに操作はしないので <= length - 2
+      const chainList: number[][] = [];
+      let chain: number[] = [];
+      for (let i = 0; i <= g.length - 2; i++) {
+        const current = g[i];
+        const next = g[i + 1]
+        if (current.leftPer + current.widthPer > next.leftPer) {
+          chain.push(i);
+          chain.push(i + 1);
+        } else {
+          chainList.push(chain);
+          chain = [];
+        }
+      }
+      chainList.push(chain);
+      chainList.filter(c => c.length > 0).forEach(chain => {
+        chain = arrUniq(chain);
+        const lastRange = g[chain[chain.length - 1]];
+        const leftPer = g[chain[0]].leftPer;
+        const widthPer = ((lastRange.leftPer + lastRange.widthPer) - leftPer) / chain.length;
+
+        let nextRangeLeftPer = leftPer;
+        chain.forEach(indexInGroup => {
+          const range = g[indexInGroup];
+          range.leftPer = nextRangeLeftPer;
+          range.widthPer = widthPer;
+          nextRangeLeftPer += widthPer;
+        })
+      })
+    })
+  }
+
+  private getBaseAllocatedRanges(rangeOrderByStartAsc: Array<Partial<DateRangeRet> & PrimitiveRange & Omit<DateRangeRet, "widthPer" | "leftPer">>) {
     const slotsCount = this.dateRangeList.length;
     // 描画箇所を割り当て済みかつループ内で参照している範囲と被りうる範囲を貯める
     let slots: Array<PrimitiveRange | null> = Array(this.dateRangeList.length).fill(null);
-    const allocatedRanges = startAsc.map((range): DateRangeRet => {
+    return rangeOrderByStartAsc.map((range): DateRangeRet => {
       // 現在参照している範囲と被らないスロット割り当て済み範囲をnull埋め。スロットを空ける
       slots = slots.map((rangeInSlots) => (rangeInSlots && rangeInSlots.end > range.start ? rangeInSlots : null));
       // 割り当てスロットの決定
@@ -60,51 +104,17 @@ export class EventRangeDisplayCalculator<T = {}> {
         widthPer: allocateSpace.width * 100 / slotsCount,
       };
     });
-    // 干渉を整理
-    const groupLen = 50;
-    const groups: DateRangeRet[][] = Array(groupLen).fill(null).map(() => []);
-    allocatedRanges.forEach(r => {
-      groups[Math.round(r.topPer * 100 / (99 / groupLen))].push(r);
-    })
-    groups.forEach(g => {
-      if (g.length <= 1) {
-        return;
-      }
-      // 干渉が起きていないか確認
-      // 干渉が起きていたら、干渉の連鎖が続いている範囲を取得し、連鎖範囲を等幅割り当てする
-      // 最も右のアイテムに操作はしないので <= length - 2
-      const chainList: number[][] = [];
-      let chain: number[]= [];
-      for (let i = 0; i <= g.length - 2; i++) {
-        const current = g[i];
-        const next = g[i + 1]
-        if (current.leftPer + current.widthPer > next.leftPer) {
-          chain.push(i);
-          chain.push(i + 1);
-        }else {
-          chainList.push(chain);
-          chain = [];
-        }
-      }
-      chainList.push(chain);
-      chainList.filter(c => c.length > 0).forEach(chain => {
-        chain = arrUniq(chain);
-        const firstRange = g[chain[0]];
-        const lastRange = g[chain[chain.length-1]];
-        const leftPer = firstRange.leftPer;
-        const widthPer = ((lastRange.leftPer + lastRange.widthPer) - leftPer) / chain.length;
+  }
 
-        let nextRangeLeftPer = leftPer;
-        chain.forEach(indexInGroup => {
-          const range = g[indexInGroup];
-          range.leftPer = nextRangeLeftPer;
-          range.widthPer = widthPer;
-          nextRangeLeftPer +=  widthPer;
-        })
-      })
-    })
-
-    return allocatedRanges;
+  private setTopAndHeight(range: PrimitiveRange & T): Partial<DateRangeRet> & PrimitiveRange & Omit<DateRangeRet, 'widthPer' | 'leftPer'> {
+    // 高さは確定済みなのでここで記述
+    const startSec = range.start.getHours() * 60 * 60 + range.start.getMinutes() * 60 + range.start.getSeconds();
+    const endSec = range.end.getHours() * 60 * 60 + range.end.getMinutes() * 60 + range.end.getSeconds();
+    return {
+      ...range,
+      topPer: startSec / (24 * 60 * 60),
+      heightPer: (endSec - startSec) / (24 * 60 * 60),
+    };
   }
 }
 

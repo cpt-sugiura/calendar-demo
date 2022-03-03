@@ -34534,20 +34534,67 @@ var EventRangeDisplayCalculator = /** @class */ (function () {
         this.dateRangeList = dateRangeList;
     }
     EventRangeDisplayCalculator.prototype.getDateRangeWithDisplay = function () {
+        var _this = this;
         // 開始日時昇順
         var startAsc = this.dateRangeList
             .sort(function (a, b) { return (0,_calender_helper__WEBPACK_IMPORTED_MODULE_0__.spaceshipEval)(a.start.getTime(), b.start.getTime()); })
-            .map(function (range) {
-            // 高さは確定済みなのでここで記述
-            var startSec = range.start.getHours() * 60 * 60 + range.start.getMinutes() * 60 + range.start.getSeconds();
-            var endSec = range.end.getHours() * 60 * 60 + range.end.getMinutes() * 60 + range.end.getSeconds();
-            return __assign(__assign({}, range), { topPer: startSec / (24 * 60 * 60), heightPer: (endSec - startSec) / (24 * 60 * 60) });
+            .map(function (range) { return _this.setTopAndHeight(range); });
+        // ベースとなる幅と開始地点を決定。この時点ではどの要素も参照時点で空いている空間を全力で使っている
+        var allocatedRanges = this.getBaseAllocatedRanges(startAsc);
+        // 全力で使った結果、見難くなる使用空間の過度な被りを減らす
+        this.avoidOverlapSpace(allocatedRanges);
+        return allocatedRanges;
+    };
+    EventRangeDisplayCalculator.prototype.avoidOverlapSpace = function (allocatedRanges) {
+        // 干渉を整理
+        // どこまで干渉を避けるか。この値を小さくすると多少時刻差があっても、グループ化する。
+        // todo グループの末尾とグループの始点の衝突について解決していない
+        var groupLen = 50;
+        var groups = Array(groupLen).fill(null).map(function () { return []; });
+        // group by topPer
+        allocatedRanges.forEach(function (r) { return groups[Math.round(r.topPer * 100 / (99 / groupLen))].push(r); });
+        // group 内で要素をみることによって干渉が起きていないか確認
+        // 干渉が起きていたら、干渉の連鎖が続いている範囲を取得し、連鎖範囲を等幅割り当てする
+        groups.forEach(function (g) {
+            if (g.length <= 1) {
+                return;
+            }
+            // 最も右のアイテムに操作はしないので <= length - 2
+            var chainList = [];
+            var chain = [];
+            for (var i = 0; i <= g.length - 2; i++) {
+                var current = g[i];
+                var next = g[i + 1];
+                if (current.leftPer + current.widthPer > next.leftPer) {
+                    chain.push(i);
+                    chain.push(i + 1);
+                }
+                else {
+                    chainList.push(chain);
+                    chain = [];
+                }
+            }
+            chainList.push(chain);
+            chainList.filter(function (c) { return c.length > 0; }).forEach(function (chain) {
+                chain = (0,_calender_helper__WEBPACK_IMPORTED_MODULE_0__.arrUniq)(chain);
+                var lastRange = g[chain[chain.length - 1]];
+                var leftPer = g[chain[0]].leftPer;
+                var widthPer = ((lastRange.leftPer + lastRange.widthPer) - leftPer) / chain.length;
+                var nextRangeLeftPer = leftPer;
+                chain.forEach(function (indexInGroup) {
+                    var range = g[indexInGroup];
+                    range.leftPer = nextRangeLeftPer;
+                    range.widthPer = widthPer;
+                    nextRangeLeftPer += widthPer;
+                });
+            });
         });
-        // 幅と開始地点を決定
+    };
+    EventRangeDisplayCalculator.prototype.getBaseAllocatedRanges = function (rangeOrderByStartAsc) {
         var slotsCount = this.dateRangeList.length;
         // 描画箇所を割り当て済みかつループ内で参照している範囲と被りうる範囲を貯める
         var slots = Array(this.dateRangeList.length).fill(null);
-        var allocatedRanges = startAsc.map(function (range) {
+        return rangeOrderByStartAsc.map(function (range) {
             // 現在参照している範囲と被らないスロット割り当て済み範囲をnull埋め。スロットを空ける
             slots = slots.map(function (rangeInSlots) { return (rangeInSlots && rangeInSlots.end > range.start ? rangeInSlots : null); });
             // 割り当てスロットの決定
@@ -34567,50 +34614,12 @@ var EventRangeDisplayCalculator = /** @class */ (function () {
                 widthPer: allocateSpace.width * 100 / slotsCount,
             };
         });
-        // 干渉を整理
-        var groupLen = 50;
-        var groups = Array(groupLen).fill(null).map(function () { return []; });
-        allocatedRanges.forEach(function (r) {
-            groups[Math.round(r.topPer * 100 / (99 / groupLen))].push(r);
-        });
-        groups.forEach(function (g) {
-            if (g.length <= 1) {
-                return;
-            }
-            // 干渉が起きていないか確認
-            // 干渉が起きていたら、干渉の連鎖が続いている範囲を取得し、連鎖範囲を等幅割り当てする
-            // 最も右のアイテムに操作はしないので <= length - 2
-            var chainList = [];
-            var chain = [];
-            for (var i = 0; i <= g.length - 2; i++) {
-                var current = g[i];
-                var next = g[i + 1];
-                if (current.leftPer + current.widthPer > next.leftPer) {
-                    chain.push(i);
-                    chain.push(i + 1);
-                }
-                else {
-                    chainList.push(chain);
-                    chain = [];
-                }
-            }
-            chainList.push(chain);
-            chainList.filter(function (c) { return c.length > 0; }).forEach(function (chain) {
-                chain = (0,_calender_helper__WEBPACK_IMPORTED_MODULE_0__.arrUniq)(chain);
-                var firstRange = g[chain[0]];
-                var lastRange = g[chain[chain.length - 1]];
-                var leftPer = firstRange.leftPer;
-                var widthPer = ((lastRange.leftPer + lastRange.widthPer) - leftPer) / chain.length;
-                var nextRangeLeftPer = leftPer;
-                chain.forEach(function (indexInGroup) {
-                    var range = g[indexInGroup];
-                    range.leftPer = nextRangeLeftPer;
-                    range.widthPer = widthPer;
-                    nextRangeLeftPer += widthPer;
-                });
-            });
-        });
-        return allocatedRanges;
+    };
+    EventRangeDisplayCalculator.prototype.setTopAndHeight = function (range) {
+        // 高さは確定済みなのでここで記述
+        var startSec = range.start.getHours() * 60 * 60 + range.start.getMinutes() * 60 + range.start.getSeconds();
+        var endSec = range.end.getHours() * 60 * 60 + range.end.getMinutes() * 60 + range.end.getSeconds();
+        return __assign(__assign({}, range), { topPer: startSec / (24 * 60 * 60), heightPer: (endSec - startSec) / (24 * 60 * 60) });
     };
     return EventRangeDisplayCalculator;
 }());
