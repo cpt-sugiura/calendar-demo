@@ -51,7 +51,7 @@
 
       td {
         border: $border;
-        height: 4em;
+        height: 3em;
         position: relative;
 
         &.event-cell {
@@ -161,7 +161,7 @@
         .calender-event {
           border: solid 1px #888888;
           position: absolute;
-          border-radius: 2em;
+          border-radius: 1em;
 
           > div {
             padding: 10px;

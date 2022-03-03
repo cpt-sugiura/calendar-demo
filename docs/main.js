@@ -18,7 +18,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(true);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".calender {\n  height: 100%;\n}\n.calender .calender-header {\n  height: 10%;\n}\n.calender .calender-body-wrapper {\n  overflow: auto;\n  height: 90%;\n}\n.calender .calender-header {\n  padding: 0 1em;\n  display: flex;\n}\n.calender .calender-header > *:not(:last-child) {\n  margin-right: 1.5em;\n}\n.calender .calender-header h3 {\n  display: flex;\n  align-items: center;\n}\n.calender .calender-header .display-selector-radio-box {\n  display: flex;\n  align-items: center;\n}\n.calender .calender-header .display-selector-radio-box > *:not(:last-child) {\n  margin-right: 1em;\n}\n.calender .calender-header .display-selector-radio-box .display-selector {\n  border-radius: 0.25em;\n  padding: 0.125em 1.5em;\n  border: solid #bababa 3px;\n}\n.calender .calender-header .display-selector-radio-box .display-selector.active {\n  border-color: #095eef;\n}\n.calender .calender-body-wrapper .calender-body {\n  width: 100%;\n  border-collapse: collapse;\n}\n.calender .calender-body-wrapper .calender-body td {\n  border: solid 1px #dfdfdf;\n  height: 4em;\n  position: relative;\n}\n.calender .calender-body-wrapper .calender-body td.event-cell {\n  height: 0;\n  border: none;\n}\n.calender .calender-body-wrapper .calender-body td:last-child {\n  border-right: none;\n}\n.calender .calender-body-wrapper .calender-body thead {\n  top: 0;\n  position: sticky;\n  z-index: 100;\n}\n.calender .calender-body-wrapper .calender-body thead th {\n  background-color: #ffffff;\n  text-align: center;\n}\n.calender .calender-body-wrapper .calender-body thead th:first-child {\n  width: 0;\n}\n.calender .calender-body-wrapper .calender-body thead th:not(:last-child) {\n  border-right: solid 1px #dfdfdf;\n}\n.calender .calender-body-wrapper .calender-body thead .date-header-day-cell.today {\n  color: #1f76e8;\n}\n.calender .calender-body-wrapper .calender-body thead .date-header-date-cell {\n  position: relative;\n}\n.calender .calender-body-wrapper .calender-body thead .date-header-date-cell .invisible-for-width {\n  visibility: hidden;\n}\n.calender .calender-body-wrapper .calender-body thead .date-header-date-cell .date-text {\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  text-align: center;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.calender .calender-body-wrapper .calender-body thead .date-header-date-cell.today .date-text div {\n  border-radius: 100%;\n  background-color: #1f76e8;\n  color: #fff;\n  height: 1.5em;\n  width: 1.5em;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.calender .calender-body-wrapper .calender-body .date-body .hour-label-cell {\n  position: relative;\n}\n.calender .calender-body-wrapper .calender-body .date-body .hour-label-cell span {\n  font-size: 0.75em;\n  white-space: nowrap;\n}\n.calender .calender-body-wrapper .calender-body .date-body .hour-label-cell .hour-label-text {\n  text-align: center;\n  position: absolute;\n  transform: translate(0, -50%);\n  left: 0;\n  right: 0;\n  top: 0;\n  z-index: 110;\n}\n.calender .calender-body-wrapper .calender-body .date-body .hour-label-cell .hour-label-text-dummy-for-space {\n  visibility: hidden;\n}\n.calender .calender-body-wrapper .calender-body .date-body .calender-date-cell.saturday {\n  background-color: #f5f7fe;\n}\n.calender .calender-body-wrapper .calender-body .date-body .calender-date-cell.sunday {\n  background-color: #ffe9e9;\n}\n.calender .calender-body-wrapper .calender-body .date-body .calender-event {\n  border: solid 1px #888888;\n  position: absolute;\n  border-radius: 2em;\n}\n.calender .calender-body-wrapper .calender-body .date-body .calender-event > div {\n  padding: 10px;\n  font-size: 0.75em;\n}\n.calender .calender-body-wrapper .calender-body .calender-current-time-marker {\n  width: 100%;\n  position: absolute;\n  display: flex;\n  align-items: center;\n}\n.calender .calender-body-wrapper .calender-body .calender-current-time-marker .circle {\n  background: #ea4335;\n  border-radius: 50%;\n  content: \"\";\n  position: absolute;\n  width: 16px;\n  height: 16px;\n}\n.calender .calender-body-wrapper .calender-body .calender-current-time-marker .bar {\n  border-top: #ea4335 solid 3px;\n  width: 100%;\n  left: 0;\n  right: 0;\n  pointer-events: none;\n}", "",{"version":3,"sources":["webpack://src/Calender/Calender.scss"],"names":[],"mappings":"AAAA;EACE,YAAA;AACF;AACE;EACE,WAAA;AACJ;AAEE;EACE,cAAA;EACA,WAAA;AAAJ;AAGE;EASE,cAAA;EACA,aAAA;AATJ;AAAI;EACE,mBAAA;AAEN;AAAI;EACE,aAAA;EACA,mBAAA;AAEN;AAII;EACE,aAAA;EACA,mBAAA;AAFN;AAIM;EACE,iBAAA;AAFR;AAKM;EACE,qBAAA;EACA,sBAAA;EACA,yBAAA;AAHR;AAKQ;EACE,qBAAA;AAHV;AAYI;EACE,WAAA;EACA,yBAAA;AAVN;AAYM;EACE,yBARG;EASH,WAAA;EACA,kBAAA;AAVR;AAYQ;EACE,SAAA;EACA,YAAA;AAVV;AAaQ;EACE,kBAAA;AAXV;AAeM;EACE,MAAA;EACA,gBAAA;EACA,YAAA;AAbR;AAeQ;EAKE,yBAAA;EAMA,kBAAA;AAtBV;AAYU;EACE,QAAA;AAVZ;AAeU;EACE,+BAnCD;AAsBX;AAoBQ;EACE,cAFY;AAhBtB;AAoBQ;EACE,kBAAA;AAlBV;AAoBU;EACE,kBAAA;AAlBZ;AAqBU;EACE,kBAAA;EACA,OAAA;EACA,QAAA;EACA,MAAA;EACA,SAAA;EACA,kBAAA;EACA,aAAA;EACA,uBAAA;EACA,mBAAA;AAnBZ;AAuBY;EACE,mBAAA;EACA,yBA1BQ;EA2BR,WAAA;EAEA,aAAA;EACA,YAAA;EACA,aAAA;EACA,uBAAA;EACA,mBAAA;AAtBd;AA6BQ;EACE,kBAAA;AA3BV;AA6BU;EACE,iBAAA;EACA,mBAAA;AA3BZ;AA8BU;EACE,kBAAA;EACA,kBAAA;EACA,6BAAA;EACA,OAAA;EACA,QAAA;EACA,MAAA;EACA,YAAA;AA5BZ;AA+BU;EACE,kBAAA;AA7BZ;AAoCU;EACE,yBAAA;AAlCZ;AAqCU;EACE,yBAAA;AAnCZ;AAuCQ;EACE,yBAAA;EACA,kBAAA;EACA,kBAAA;AArCV;AAuCU;EACE,aAAA;EACA,iBAAA;AArCZ;AA0CM;EACE,WAAA;EACA,kBAAA;EACA,aAAA;EACA,mBAAA;AAxCR;AA2CQ;EACE,mBAHa;EAIb,kBAAA;EACA,WAAA;EACA,kBAAA;EACA,WAAA;EACA,YAAA;AAzCV;AA4CQ;EACE,6BAAA;EACA,WAAA;EACA,OAAA;EACA,QAAA;EACA,oBAAA;AA1CV","sourcesContent":[".calender {\n  height: 100%;\n\n  .calender-header {\n    height: 10%;\n  }\n\n  .calender-body-wrapper {\n    overflow: auto;\n    height: 90%;\n  }\n\n  .calender-header {\n    > *:not(:last-child) {\n      margin-right: 1.5em;\n    }\n    h3 {\n      display: flex;\n      align-items: center;\n    }\n\n    padding: 0 1em;\n    display: flex;\n\n    .display-selector-radio-box {\n      display: flex;\n      align-items: center;\n\n      > *:not(:last-child) {\n        margin-right: 1em;\n      }\n\n      .display-selector {\n        border-radius: 0.25em;\n        padding: 0.125em 1.5em;\n        border: solid #bababa 3px;\n\n        &.active {\n          border-color: #095eef;\n        }\n      }\n    }\n  }\n\n  $border: solid 1px #dfdfdf;\n\n  .calender-body-wrapper {\n    .calender-body {\n      width: 100%;\n      border-collapse: collapse;\n\n      td {\n        border: $border;\n        height: 4em;\n        position: relative;\n\n        &.event-cell {\n          height: 0;\n          border: none;\n        }\n\n        &:last-child {\n          border-right: none;\n        }\n      }\n\n      thead {\n        top: 0;\n        position: sticky;\n        z-index: 100;\n\n        th {\n          &:first-child {\n            width: 0;\n          }\n\n          background-color: #ffffff;\n\n          &:not(:last-child) {\n            border-right: $border;\n          }\n\n          text-align: center;\n        }\n\n        $today-color: #1f76e8;\n        .date-header-day-cell.today {\n          color: $today-color;\n        }\n        .date-header-date-cell {\n          position: relative;\n\n          .invisible-for-width {\n            visibility: hidden;\n          }\n\n          .date-text {\n            position: absolute;\n            left: 0;\n            right: 0;\n            top: 0;\n            bottom: 0;\n            text-align: center;\n            display: flex;\n            justify-content: center;\n            align-items: center;\n          }\n\n          &.today {\n            .date-text div{\n              border-radius: 100%;\n              background-color: $today-color;\n              color: #fff;\n\n              height: 1.5em;\n              width: 1.5em;\n              display: flex;\n              justify-content: center;\n              align-items: center;\n            }\n          }\n        }\n      }\n\n      .date-body {\n        .hour-label-cell {\n          position: relative;\n\n          span {\n            font-size: .75em;\n            white-space: nowrap;\n          }\n\n          .hour-label-text {\n            text-align: center;\n            position: absolute;\n            transform: translate(0, -50%);\n            left: 0;\n            right: 0;\n            top: 0;\n            z-index: 110;\n          }\n\n          .hour-label-text-dummy-for-space {\n            visibility: hidden;\n          }\n\n        }\n\n        .calender-date-cell {\n\n          &.saturday {\n            background-color: #f5f7fe;\n          }\n\n          &.sunday {\n            background-color: #ffe9e9;\n          }\n        }\n\n        .calender-event {\n          border: solid 1px #888888;\n          position: absolute;\n          border-radius: 2em;\n\n          > div {\n            padding: 10px;\n            font-size: 0.75em;\n          }\n        }\n      }\n\n      .calender-current-time-marker {\n        width: 100%;\n        position: absolute;\n        display: flex;\n        align-items: center;\n        $marker-color: #ea4335;\n\n        .circle {\n          background: $marker-color;\n          border-radius: 50%;\n          content: \"\";\n          position: absolute;\n          width: 16px;\n          height: 16px;\n        }\n\n        .bar {\n          border-top: $marker-color solid 3px;\n          width: 100%;\n          left: 0;\n          right: 0;\n          pointer-events: none;\n        }\n      }\n    }\n  }\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".calender {\n  height: 100%;\n}\n.calender .calender-header {\n  height: 10%;\n}\n.calender .calender-body-wrapper {\n  overflow: auto;\n  height: 90%;\n}\n.calender .calender-header {\n  padding: 0 1em;\n  display: flex;\n}\n.calender .calender-header > *:not(:last-child) {\n  margin-right: 1.5em;\n}\n.calender .calender-header h3 {\n  display: flex;\n  align-items: center;\n}\n.calender .calender-header .display-selector-radio-box {\n  display: flex;\n  align-items: center;\n}\n.calender .calender-header .display-selector-radio-box > *:not(:last-child) {\n  margin-right: 1em;\n}\n.calender .calender-header .display-selector-radio-box .display-selector {\n  border-radius: 0.25em;\n  padding: 0.125em 1.5em;\n  border: solid #bababa 3px;\n}\n.calender .calender-header .display-selector-radio-box .display-selector.active {\n  border-color: #095eef;\n}\n.calender .calender-body-wrapper .calender-body {\n  width: 100%;\n  border-collapse: collapse;\n}\n.calender .calender-body-wrapper .calender-body td {\n  border: solid 1px #dfdfdf;\n  height: 3em;\n  position: relative;\n}\n.calender .calender-body-wrapper .calender-body td.event-cell {\n  height: 0;\n  border: none;\n}\n.calender .calender-body-wrapper .calender-body td:last-child {\n  border-right: none;\n}\n.calender .calender-body-wrapper .calender-body thead {\n  top: 0;\n  position: sticky;\n  z-index: 100;\n}\n.calender .calender-body-wrapper .calender-body thead th {\n  background-color: #ffffff;\n  text-align: center;\n}\n.calender .calender-body-wrapper .calender-body thead th:first-child {\n  width: 0;\n}\n.calender .calender-body-wrapper .calender-body thead th:not(:last-child) {\n  border-right: solid 1px #dfdfdf;\n}\n.calender .calender-body-wrapper .calender-body thead .date-header-day-cell.today {\n  color: #1f76e8;\n}\n.calender .calender-body-wrapper .calender-body thead .date-header-date-cell {\n  position: relative;\n}\n.calender .calender-body-wrapper .calender-body thead .date-header-date-cell .invisible-for-width {\n  visibility: hidden;\n}\n.calender .calender-body-wrapper .calender-body thead .date-header-date-cell .date-text {\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  text-align: center;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.calender .calender-body-wrapper .calender-body thead .date-header-date-cell.today .date-text div {\n  border-radius: 100%;\n  background-color: #1f76e8;\n  color: #fff;\n  height: 1.5em;\n  width: 1.5em;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.calender .calender-body-wrapper .calender-body .date-body .hour-label-cell {\n  position: relative;\n}\n.calender .calender-body-wrapper .calender-body .date-body .hour-label-cell span {\n  font-size: 0.75em;\n  white-space: nowrap;\n}\n.calender .calender-body-wrapper .calender-body .date-body .hour-label-cell .hour-label-text {\n  text-align: center;\n  position: absolute;\n  transform: translate(0, -50%);\n  left: 0;\n  right: 0;\n  top: 0;\n  z-index: 110;\n}\n.calender .calender-body-wrapper .calender-body .date-body .hour-label-cell .hour-label-text-dummy-for-space {\n  visibility: hidden;\n}\n.calender .calender-body-wrapper .calender-body .date-body .calender-date-cell.saturday {\n  background-color: #f5f7fe;\n}\n.calender .calender-body-wrapper .calender-body .date-body .calender-date-cell.sunday {\n  background-color: #ffe9e9;\n}\n.calender .calender-body-wrapper .calender-body .date-body .calender-event {\n  border: solid 1px #888888;\n  position: absolute;\n  border-radius: 1em;\n}\n.calender .calender-body-wrapper .calender-body .date-body .calender-event > div {\n  padding: 10px;\n  font-size: 0.75em;\n}\n.calender .calender-body-wrapper .calender-body .calender-current-time-marker {\n  width: 100%;\n  position: absolute;\n  display: flex;\n  align-items: center;\n}\n.calender .calender-body-wrapper .calender-body .calender-current-time-marker .circle {\n  background: #ea4335;\n  border-radius: 50%;\n  content: \"\";\n  position: absolute;\n  width: 16px;\n  height: 16px;\n}\n.calender .calender-body-wrapper .calender-body .calender-current-time-marker .bar {\n  border-top: #ea4335 solid 3px;\n  width: 100%;\n  left: 0;\n  right: 0;\n  pointer-events: none;\n}", "",{"version":3,"sources":["webpack://src/Calender/Calender.scss"],"names":[],"mappings":"AAAA;EACE,YAAA;AACF;AACE;EACE,WAAA;AACJ;AAEE;EACE,cAAA;EACA,WAAA;AAAJ;AAGE;EASE,cAAA;EACA,aAAA;AATJ;AAAI;EACE,mBAAA;AAEN;AAAI;EACE,aAAA;EACA,mBAAA;AAEN;AAII;EACE,aAAA;EACA,mBAAA;AAFN;AAIM;EACE,iBAAA;AAFR;AAKM;EACE,qBAAA;EACA,sBAAA;EACA,yBAAA;AAHR;AAKQ;EACE,qBAAA;AAHV;AAYI;EACE,WAAA;EACA,yBAAA;AAVN;AAYM;EACE,yBARG;EASH,WAAA;EACA,kBAAA;AAVR;AAYQ;EACE,SAAA;EACA,YAAA;AAVV;AAaQ;EACE,kBAAA;AAXV;AAeM;EACE,MAAA;EACA,gBAAA;EACA,YAAA;AAbR;AAeQ;EAKE,yBAAA;EAMA,kBAAA;AAtBV;AAYU;EACE,QAAA;AAVZ;AAeU;EACE,+BAnCD;AAsBX;AAoBQ;EACE,cAFY;AAhBtB;AAoBQ;EACE,kBAAA;AAlBV;AAoBU;EACE,kBAAA;AAlBZ;AAqBU;EACE,kBAAA;EACA,OAAA;EACA,QAAA;EACA,MAAA;EACA,SAAA;EACA,kBAAA;EACA,aAAA;EACA,uBAAA;EACA,mBAAA;AAnBZ;AAuBY;EACE,mBAAA;EACA,yBA1BQ;EA2BR,WAAA;EAEA,aAAA;EACA,YAAA;EACA,aAAA;EACA,uBAAA;EACA,mBAAA;AAtBd;AA6BQ;EACE,kBAAA;AA3BV;AA6BU;EACE,iBAAA;EACA,mBAAA;AA3BZ;AA8BU;EACE,kBAAA;EACA,kBAAA;EACA,6BAAA;EACA,OAAA;EACA,QAAA;EACA,MAAA;EACA,YAAA;AA5BZ;AA+BU;EACE,kBAAA;AA7BZ;AAoCU;EACE,yBAAA;AAlCZ;AAqCU;EACE,yBAAA;AAnCZ;AAuCQ;EACE,yBAAA;EACA,kBAAA;EACA,kBAAA;AArCV;AAuCU;EACE,aAAA;EACA,iBAAA;AArCZ;AA0CM;EACE,WAAA;EACA,kBAAA;EACA,aAAA;EACA,mBAAA;AAxCR;AA2CQ;EACE,mBAHa;EAIb,kBAAA;EACA,WAAA;EACA,kBAAA;EACA,WAAA;EACA,YAAA;AAzCV;AA4CQ;EACE,6BAAA;EACA,WAAA;EACA,OAAA;EACA,QAAA;EACA,oBAAA;AA1CV","sourcesContent":[".calender {\n  height: 100%;\n\n  .calender-header {\n    height: 10%;\n  }\n\n  .calender-body-wrapper {\n    overflow: auto;\n    height: 90%;\n  }\n\n  .calender-header {\n    > *:not(:last-child) {\n      margin-right: 1.5em;\n    }\n    h3 {\n      display: flex;\n      align-items: center;\n    }\n\n    padding: 0 1em;\n    display: flex;\n\n    .display-selector-radio-box {\n      display: flex;\n      align-items: center;\n\n      > *:not(:last-child) {\n        margin-right: 1em;\n      }\n\n      .display-selector {\n        border-radius: 0.25em;\n        padding: 0.125em 1.5em;\n        border: solid #bababa 3px;\n\n        &.active {\n          border-color: #095eef;\n        }\n      }\n    }\n  }\n\n  $border: solid 1px #dfdfdf;\n\n  .calender-body-wrapper {\n    .calender-body {\n      width: 100%;\n      border-collapse: collapse;\n\n      td {\n        border: $border;\n        height: 3em;\n        position: relative;\n\n        &.event-cell {\n          height: 0;\n          border: none;\n        }\n\n        &:last-child {\n          border-right: none;\n        }\n      }\n\n      thead {\n        top: 0;\n        position: sticky;\n        z-index: 100;\n\n        th {\n          &:first-child {\n            width: 0;\n          }\n\n          background-color: #ffffff;\n\n          &:not(:last-child) {\n            border-right: $border;\n          }\n\n          text-align: center;\n        }\n\n        $today-color: #1f76e8;\n        .date-header-day-cell.today {\n          color: $today-color;\n        }\n        .date-header-date-cell {\n          position: relative;\n\n          .invisible-for-width {\n            visibility: hidden;\n          }\n\n          .date-text {\n            position: absolute;\n            left: 0;\n            right: 0;\n            top: 0;\n            bottom: 0;\n            text-align: center;\n            display: flex;\n            justify-content: center;\n            align-items: center;\n          }\n\n          &.today {\n            .date-text div{\n              border-radius: 100%;\n              background-color: $today-color;\n              color: #fff;\n\n              height: 1.5em;\n              width: 1.5em;\n              display: flex;\n              justify-content: center;\n              align-items: center;\n            }\n          }\n        }\n      }\n\n      .date-body {\n        .hour-label-cell {\n          position: relative;\n\n          span {\n            font-size: .75em;\n            white-space: nowrap;\n          }\n\n          .hour-label-text {\n            text-align: center;\n            position: absolute;\n            transform: translate(0, -50%);\n            left: 0;\n            right: 0;\n            top: 0;\n            z-index: 110;\n          }\n\n          .hour-label-text-dummy-for-space {\n            visibility: hidden;\n          }\n\n        }\n\n        .calender-date-cell {\n\n          &.saturday {\n            background-color: #f5f7fe;\n          }\n\n          &.sunday {\n            background-color: #ffe9e9;\n          }\n        }\n\n        .calender-event {\n          border: solid 1px #888888;\n          position: absolute;\n          border-radius: 1em;\n\n          > div {\n            padding: 10px;\n            font-size: 0.75em;\n          }\n        }\n      }\n\n      .calender-current-time-marker {\n        width: 100%;\n        position: absolute;\n        display: flex;\n        align-items: center;\n        $marker-color: #ea4335;\n\n        .circle {\n          background: $marker-color;\n          border-radius: 50%;\n          content: \"\";\n          position: absolute;\n          width: 16px;\n          height: 16px;\n        }\n\n        .bar {\n          border-top: $marker-color solid 3px;\n          width: 100%;\n          left: 0;\n          right: 0;\n          pointer-events: none;\n        }\n      }\n    }\n  }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -34197,7 +34197,7 @@ var _a;
 
 
 var dateInitForDemo = new Date().getDate();
-var pallet = ['#b8f9ba88', '#ccddff88', '#dfdfdf88'];
+var pallet = ['#b8f9ba', '#ccddff', '#dfdfdf'];
 var events = (_a = {},
     _a[dateInitForDemo] = [
         {
@@ -34233,6 +34233,18 @@ var events = (_a = {},
         {
             title: '〇〇建設様配達先6',
             startDate: new Date('2022-02-28 16:45:00'),
+            endDate: new Date('2022-02-28 19:00:00'),
+            backgroundColor: pallet[1],
+        },
+        {
+            title: '〇〇建設様配達先7',
+            startDate: new Date('2022-02-28 18:00:00'),
+            endDate: new Date('2022-02-28 19:00:00'),
+            backgroundColor: pallet[2],
+        },
+        {
+            title: '〇〇建設様配達先8',
+            startDate: new Date('2022-02-28 18:00:00'),
             endDate: new Date('2022-02-28 19:00:00'),
             backgroundColor: pallet[1],
         },
@@ -34485,9 +34497,6 @@ var EventRangeDisplayCalculator = /** @class */ (function () {
     function EventRangeDisplayCalculator(dateRangeList) {
         this.dateRangeList = dateRangeList;
     }
-    // todo 近い場所の場合、文字が被るので特別に見た目を離す処理が欲しい
-    // todo 右端に長いのがあってスタックが減ると終点が見えずに詰む
-    // スタックよりもスロットの方が良いのでは？
     EventRangeDisplayCalculator.prototype.getDateRangeWithDisplay = function () {
         // 開始日時昇順
         var startAsc = this.dateRangeList
@@ -34505,26 +34514,21 @@ var EventRangeDisplayCalculator = /** @class */ (function () {
         var slots = Array(this.dateRangeList.length).fill(null);
         return startAsc.map(function (range) {
             var _a, _b;
-            // 現在参照している範囲と被らないスタックしている範囲を除去
+            // 現在参照している範囲と被らないスロット割り当て済み範囲をnull埋め。スロットを空ける
             slots = slots.map(function (rangeInSlots) { return (rangeInSlots && rangeInSlots.end > range.start ? rangeInSlots : null); });
-            try {
-                slots.forEach(function (allocateRange, index) {
-                    if (allocateRange) {
-                        return;
-                    }
-                    slots[index] = range;
-                    var marginRight = slots.slice(index + 1).filter(function (r) { return !!r; }).length;
-                    // スタックしている範囲の分、幅と開始地点をずらす
-                    range.leftPer = (index * 100) / slotsCount;
-                    range.widthPer = 100 - range.leftPer - (marginRight * 100) / slotsCount;
-                    throw 'break';
-                });
-            }
-            catch (e) {
-                if (e !== 'break') {
-                    throw e;
-                }
-            }
+            // 割り当てスロットの決定
+            var spaces = continuousFreeSpaceSlots(slots.map(function (r) { return r ? true : null; }))
+                // 幅降順
+                .sort(function (a, b) { return (0,_calender_helper__WEBPACK_IMPORTED_MODULE_0__.spaceshipEval)(b.width, a.width); });
+            var allocateSpace = spaces[0];
+            console.log({
+                range: range,
+                allocateSpace: allocateSpace
+            });
+            slots[allocateSpace.start] = range;
+            // スタックしている範囲の分、幅と開始地点をずらす
+            range.leftPer = allocateSpace.start * 100 / slotsCount;
+            range.widthPer = allocateSpace.width * 100 / slotsCount;
             // 描画範囲を追加した要素を返す
             return {
                 start: range.start,
@@ -34539,6 +34543,39 @@ var EventRangeDisplayCalculator = /** @class */ (function () {
     return EventRangeDisplayCalculator;
 }());
 
+// 連続した空スロットをまとめる。slots の null が空スロット、 true が割り当て済みスロット
+var continuousFreeSpaceSlots = function (slots) {
+    var ret = [];
+    var freeSlot = {};
+    for (var index = 0; index < slots.length; index++) {
+        var value = slots[index];
+        if (!value) {
+            if (freeSlot.start === undefined) {
+                freeSlot.start = index;
+            }
+            else {
+                // no action
+            }
+        }
+        else {
+            if (freeSlot.start === undefined) {
+                // no action
+            }
+            else {
+                freeSlot.end = index - 1;
+                freeSlot.width = (index - 1) - freeSlot.start;
+                ret.push(freeSlot);
+                freeSlot = {};
+            }
+        }
+    }
+    if (freeSlot.start !== undefined) {
+        freeSlot.end = slots.length - 1;
+        freeSlot.width = slots.length - freeSlot.start;
+        ret.push(freeSlot);
+    }
+    return ret;
+};
 
 
 /***/ }),
