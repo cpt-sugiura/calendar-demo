@@ -32,7 +32,7 @@ export const arrUniq = <T>(array: T[]): T[] => {
 
 const getParams = () => {
   const ret: { [p: string]: string } = {};
-  new URLSearchParams(window.location.href).forEach((v, k) => {
+  new URLSearchParams(window.location.search).forEach((v, k) => {
     ret[k] = v;
   });
   return ret;

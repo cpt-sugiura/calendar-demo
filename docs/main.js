@@ -34513,7 +34513,7 @@ var arrUniq = function (array) {
 };
 var getParams = function () {
     var ret = {};
-    new URLSearchParams(window.location.href).forEach(function (v, k) {
+    new URLSearchParams(window.location.search).forEach(function (v, k) {
         ret[k] = v;
     });
     return ret;
