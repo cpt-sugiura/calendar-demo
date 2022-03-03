@@ -1,4 +1,9 @@
-import { arrUniq, withoutEventMonospace, spaceshipEval } from '../calender-helper';
+import {
+  arrUniq,
+  withoutEventMonospace,
+  spaceshipEval,
+  fitSpace
+} from '../calender-helper';
 
 type PrimitiveRange = {
   start: Date;
@@ -88,9 +93,11 @@ export class EventRangeDisplayCalculator<T = {}> {
   private getBaseAllocatedRanges(
     rangeOrderByStartAsc: Array<Partial<DateRangeRet> & T & PrimitiveRange & Omit<DateRangeRet, 'widthPer' | 'leftPer'>>
   ): Array<DateRangeRet & T> {
-    const slotsCount = this.dateRangeList.length;
+    const slotsCount = fitSpace()
+      ? (this.dateRangeList.length === 5 ? 3 : 5)
+      : this.dateRangeList.length;
     // 描画箇所を割り当て済みかつループ内で参照している範囲と被りうる範囲を貯める
-    let slots: Array<PrimitiveRange | null> = Array(this.dateRangeList.length).fill(null);
+    let slots: Array<PrimitiveRange | null> = Array(slotsCount).fill(null);
     return rangeOrderByStartAsc.map((range): DateRangeRet & T => {
       // 現在参照している範囲と被らないスロット割り当て済み範囲をnull埋め。スロットを空ける
       slots = slots.map((rangeInSlots) => (rangeInSlots && rangeInSlots.end > range.start ? rangeInSlots : null));

@@ -34483,7 +34483,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "arrUniq": () => (/* binding */ arrUniq),
 /* harmony export */   "isBackgroundAlpha": () => (/* binding */ isBackgroundAlpha),
 /* harmony export */   "withoutBorderOverlap": () => (/* binding */ withoutBorderOverlap),
-/* harmony export */   "withoutEventMonospace": () => (/* binding */ withoutEventMonospace)
+/* harmony export */   "withoutEventMonospace": () => (/* binding */ withoutEventMonospace),
+/* harmony export */   "fitSpace": () => (/* binding */ fitSpace)
 /* harmony export */ });
 var isToday = function (d) {
     var today = new Date();
@@ -34526,6 +34527,9 @@ var withoutBorderOverlap = function () {
 };
 var withoutEventMonospace = function () {
     return getParams().withoutEventMonospace === '1';
+};
+var fitSpace = function () {
+    return withoutEventMonospace() && getParams().fitSpace === '1';
 };
 
 
@@ -34621,9 +34625,11 @@ var EventRangeDisplayCalculator = /** @class */ (function () {
         });
     };
     EventRangeDisplayCalculator.prototype.getBaseAllocatedRanges = function (rangeOrderByStartAsc) {
-        var slotsCount = this.dateRangeList.length;
+        var slotsCount = (0,_calender_helper__WEBPACK_IMPORTED_MODULE_0__.fitSpace)()
+            ? (this.dateRangeList.length === 5 ? 3 : 5)
+            : this.dateRangeList.length;
         // 描画箇所を割り当て済みかつループ内で参照している範囲と被りうる範囲を貯める
-        var slots = Array(this.dateRangeList.length).fill(null);
+        var slots = Array(slotsCount).fill(null);
         return rangeOrderByStartAsc.map(function (range) {
             // 現在参照している範囲と被らないスロット割り当て済み範囲をnull埋め。スロットを空ける
             slots = slots.map(function (rangeInSlots) { return (rangeInSlots && rangeInSlots.end > range.start ? rangeInSlots : null); });

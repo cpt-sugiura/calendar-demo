@@ -49,3 +49,7 @@ export const withoutBorderOverlap = () => {
 export const withoutEventMonospace = () => {
   return getParams().withoutEventMonospace === '1';
 };
+
+export const fitSpace = () => {
+  return withoutEventMonospace() && getParams().fitSpace === '1';
+};
