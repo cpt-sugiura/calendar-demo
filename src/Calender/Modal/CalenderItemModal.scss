@@ -34,12 +34,12 @@
     padding: .75em 1.5em;
     display: grid;
     grid:
-    "inputList inputList mapChart mapChart mapChart" 1fr
-    "inputList inputList mapChart mapChart mapChart" 1fr
-    "inputList inputList mapChart mapChart mapChart" 1fr
-    "freeText freeText freeText freeText freeText" 1fr
-    "freeText freeText freeText freeText freeText" 1fr
-    / 1fr 1fr 1fr 1fr 1fr;
+    "inputList inputList inputList mapChart mapChart mapChart mapChart" 1fr
+    "inputList inputList inputList mapChart mapChart mapChart mapChart" 1fr
+    "inputList inputList inputList mapChart mapChart mapChart mapChart" 1fr
+    "freeText freeText freeText freeText freeText freeText pdfIconBox" 1fr
+    "freeText freeText freeText freeText freeText freeText pdfIconBox" 1fr
+    / 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     gap: 8px;
 
     .inputList {
@@ -75,6 +75,17 @@
     .freeText {
       grid-area: freeText;
       white-space: pre-wrap;
+    }
+    .pdfIconBox {
+      grid-area: pdfIconBox;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        height: 3em;
+        width: 3em;
+        cursor: pointer;
+      }
     }
 
   }

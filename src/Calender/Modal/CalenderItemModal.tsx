@@ -65,6 +65,7 @@ export const CalenderItemModal: React.FC<CalenderItemModalProps> = (props) => {
             <MapChart lat={item.lat} lng={item.lng} />
           </div>
           <div className={'freeText'}>{item.freeText}</div>
+          <div className={'pdfIconBox'}><ImgLikeIcon src={'assets/pdf.webp'} onClick={() => alert('未実装です')} /></div>
         </DialogContent>
         <div className={'calender-item-modal-footer'}>
           <div>
