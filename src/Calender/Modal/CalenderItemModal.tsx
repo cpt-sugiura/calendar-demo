@@ -7,6 +7,8 @@ import './CalenderItemModal.scss';
 import {useDateTimeFormatters} from "../useDateTimeFormatters";
 import {InputListItem} from "./InputListItem";
 import {MapChart} from "./MapChart";
+import {ImgLikeIcon} from "./ImgLikeIcon";
+import {DeleteBtn} from "./DeleteBtn";
 
 type CalenderItemModalProps = {
   item: CalenderEventCanBeOnModal
@@ -29,8 +31,8 @@ export const CalenderItemModal: React.FC<CalenderItemModalProps> = (props) => {
             {item.title}
           </div>
           <div className={'icon-box'}>
-            <BiDotsVerticalRounded/>
-            <GrFormClose/>
+            <BiDotsVerticalRounded onClick={() => alert('未実装です')}/>
+            <GrFormClose onClick={handleClose}/>
           </div>
         </div>
       </DialogTitle>
@@ -40,7 +42,9 @@ export const CalenderItemModal: React.FC<CalenderItemModalProps> = (props) => {
             <div><span>担当: </span><span>{item.accountName}</span></div>
             <div><span>TEL: </span><span>{item.phoneNumber}</span></div>
           </div>
-          <InputListItem imgSrc={'assets/time.webp'} text={<span>{dmf(item.startDate)}<wbr/>～<wbr/>{dmf(item.endDate)}</span>}/>
+          <InputListItem imgSrc={'assets/time.webp'} text={<span>{dmf(item.startDate)}
+            <wbr/>～<wbr/>
+            {dmf(item.endDate)}</span>}/>
           <InputListItem imgSrc={'assets/soil.webp'} text={`${item.distName}`}/>
           <InputListItem imgSrc={'assets/dump.webp'} text={`${item.carryMethod}`}/>
           <InputListItem imgSrc={'assets/mount.webp'} text={`${item.weight}`}/>
@@ -54,6 +58,15 @@ export const CalenderItemModal: React.FC<CalenderItemModalProps> = (props) => {
           {item.freeText}
         </div>
       </DialogContent>
+      <div className={'calender-item-modal-footer'}>
+        <div>
+          <DeleteBtn deleteBtn={<ImgLikeIcon src={'assets/waste.webp'}/>} deleteAction={() => alert('未実装です')}/>
+        </div>
+        <div>
+          <ImgLikeIcon src={'assets/edit.webp'} onClick={() => alert('未実装です')}/>
+          <ImgLikeIcon src={'assets/print.webp'} onClick={() => alert('未実装です')}/>
+        </div>
+      </div>
     </Dialog>
   </>
 }

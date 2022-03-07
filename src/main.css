@@ -2,7 +2,7 @@
 
 html,
 body,
-body > div { /* the react root */
+.react-root { /* the react root */
   margin: 0;
   padding: 0;
   height: 100%;
