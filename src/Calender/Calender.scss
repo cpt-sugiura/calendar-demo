@@ -194,6 +194,7 @@
         display: flex;
         align-items: center;
         $marker-color: #ea4335;
+        z-index: 1000;
 
         .circle {
           background: $marker-color;
