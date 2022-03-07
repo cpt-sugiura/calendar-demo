@@ -7,7 +7,7 @@ type CalenderEventOnCalender = {
   title: string;
   backgroundColor: CSSProperties['backgroundColor'];
 };
-export type CalenderEventCanBeOnModal = CalenderEventOnCalender & Partial<{
+export type CalenderEventCanBeOnModal = CalenderEventOnCalender & {
   lat: number;
   lng: number;
   accountName: string;
@@ -15,10 +15,10 @@ export type CalenderEventCanBeOnModal = CalenderEventOnCalender & Partial<{
   distName: string;
   carryMethod: string;
   weight: string;
-  operator: boolean;
+  operator: string;
   info: string;
   freeText: string;
-}>
+}
 type CalenderEventProps = {
   event: CalenderEventCanBeOnModal;
   style?: CSSProperties;
