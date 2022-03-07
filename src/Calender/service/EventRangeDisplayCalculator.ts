@@ -7,6 +7,11 @@ type PrimitiveRange = {
   start: Date;
   end: Date;
 };
+type GroupPrimitiveRange = {
+  group: PrimitiveRange[]
+  start: Date;
+  end: Date;
+};
 type DateRangeRet = {
   start: Date;
   end: Date;
