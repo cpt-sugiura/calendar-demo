@@ -1,14 +1,14 @@
 import { CalenderDate, SATURDAY, SUNDAY } from './@types/Date';
 import React, { useEffect, useRef, useState } from 'react';
 import { DateStruct } from './useDate';
-import { CalenderEvent, CalenderEventInput } from './CalenderEvent';
+import { CalenderEvent, CalenderEventCanBeOnModal } from './CalenderEvent';
 import { EventRangeDisplayCalculator } from './service/EventRangeDisplayCalculator';
 import { CalenderTimeMarker } from './CalenderTimeMarker';
 import { includeCurrentTime, isToday } from './calender-helper';
 
 const dateInitForDemo = new Date().getDate();
 const pallet = ['#b8f9ba', '#ccddff', '#dfdfdf'];
-const events: { [p: number]: CalenderEventInput[] } = {
+const events: { [p: number]: CalenderEventCanBeOnModal[] } = {
   [dateInitForDemo]: [
     {
       title: '〇〇建設様配達先',
@@ -130,7 +130,7 @@ export const CalenderDateBody: React.FC<CalenderDateBodyProps> = (props) => {
         <td style={{ height: 0, border: 'none' }} />
         {props.calenderDates.map((d) => (
           <td className={'event-cell'} key={d.date.toISOString()} style={{ position: 'relative' }}>
-            {new EventRangeDisplayCalculator<CalenderEventInput>(
+            {new EventRangeDisplayCalculator<CalenderEventCanBeOnModal>(
               (events[d.date.getDate()] ?? []).map((d) => {
                 return {
                   ...d,

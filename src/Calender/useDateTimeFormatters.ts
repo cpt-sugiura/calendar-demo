@@ -40,7 +40,7 @@ export const useDateTimeFormatters = (): {
   const yearFormatter = (d: CanFormatType): string => baseFormatter(d, 'yyyy年');
   const onlyDateFormatter = (d: CanFormatType): string => baseFormatter(d, 'M月d日(E)');
   const dateFormatter = (d: CanFormatType): string => baseFormatter(d, 'yyyy年M月d日(E)');
-  const dateMinuteFormatter = (d: CanFormatType): string => baseFormatter(d, 'yyyy年M月d日(E) HH:mm');
+  const dateMinuteFormatter = (d: CanFormatType): string => baseFormatter(d, 'yyyy/M/d H:mm');
   const dateMinuteNaturalLanguageFormatter = (d: CanFormatType): string => baseFormatter(d, 'yyyy年M月d日(E) HH時mm分');
   const minuteFormatter = (d: CanFormatType): string => baseFormatter(d, 'HH:mm');
   const dateTimeFormatter = (d: CanFormatType): string => baseFormatter(d, 'yyyy年M月d日(E) HH:mm:ss');

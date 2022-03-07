@@ -1,0 +1,70 @@
+.calender-item-modal {
+  .MuiPaper-root {
+    width: 60%;
+    max-width: none;
+  }
+
+  .MuiDialogTitle-root {
+    background-color: #ccddff;
+    padding: 8px 12px;
+
+    .calender-item-modal-title {
+      display: flex;
+      justify-content: space-between;
+
+      > div {
+        display: flex;
+        align-items: center;
+
+        &.icon-box > svg {
+          height: 1.5em;
+          width: 1.5em;
+        }
+      }
+    }
+  }
+
+  .calender-item-modal-content {
+    display: grid;
+    grid:
+    "inputList inputList chart chart chart" 1fr
+    "inputList inputList chart chart chart" 1fr
+    "inputList inputList chart chart chart" 1fr
+    "freeText freeText freeText freeText freeText" 1fr
+    "freeText freeText freeText freeText freeText" 1fr
+    / 1fr 1fr 1fr 1fr 1fr;
+    gap: 8px;
+
+    .inputList {
+      grid-area: inputList;
+      .accounts {
+        display: flex;
+        justify-content: space-evenly;
+      }
+
+      .input-list-item {
+        display: flex;
+        align-items: baseline;
+        border-bottom: solid 1px #b6b6b6;
+        &:not(:last-child){
+          margin-bottom: 5px;
+        }
+        img {
+          height: 1em;
+          width: 1em;
+          margin-right: 0.25em;
+        }
+      }
+    }
+
+    .chart {
+      grid-area: chart;
+    }
+
+    .freeText {
+      grid-area: freeText;
+      white-space: pre-wrap;
+    }
+
+  }
+}
