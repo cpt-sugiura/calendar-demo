@@ -29,11 +29,3 @@ export const spaceshipEval = (a: number | string, b: number | string): -1 | 0 | 
 export const arrUniq = <T>(array: T[]): T[] => {
   return Array.from(new Set(array));
 };
-
-const getParams = () => {
-  const ret: { [p: string]: string } = {};
-  new URLSearchParams(window.location.search).forEach((v, k) => {
-    ret[k] = v;
-  });
-  return ret;
-};

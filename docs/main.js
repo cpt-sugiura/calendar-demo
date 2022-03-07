@@ -75233,16 +75233,16 @@ var CalenderItemModal = function (props) {
     var handleOpen = function () { return setOpen(true); };
     var handleClose = function () { return setOpen(false); };
     var dmf = (0,_useDateTimeFormatters__WEBPACK_IMPORTED_MODULE_2__.useDateTimeFormatters)().dmf;
-    return react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null,
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null,
         react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { onClick: handleOpen }, props.children),
         react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], { open: open, onClose: handleClose, className: 'calender-item-modal' },
             react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], null,
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "calender-item-modal-title" },
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'calender-item-modal-title' },
                     react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, item.title),
                     react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'icon-box' },
                         react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_bi__WEBPACK_IMPORTED_MODULE_9__.BiDotsVerticalRounded, { onClick: function () { return alert('未実装です'); } }),
                         react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_gr__WEBPACK_IMPORTED_MODULE_10__.GrFormClose, { onClick: handleClose })))),
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_11__["default"], { className: "calender-item-modal-content" },
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_11__["default"], { className: 'calender-item-modal-content' },
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'inputList' },
                     react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'accounts' },
                         react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null,
@@ -75262,7 +75262,7 @@ var CalenderItemModal = function (props) {
                     react__WEBPACK_IMPORTED_MODULE_0__.createElement(_InputListItem__WEBPACK_IMPORTED_MODULE_3__.InputListItem, { imgSrc: 'assets/mount.webp', text: "".concat(item.weight) }),
                     react__WEBPACK_IMPORTED_MODULE_0__.createElement(_InputListItem__WEBPACK_IMPORTED_MODULE_3__.InputListItem, { imgSrc: 'assets/ope.webp', text: "".concat(item.operator) }),
                     react__WEBPACK_IMPORTED_MODULE_0__.createElement(_InputListItem__WEBPACK_IMPORTED_MODULE_3__.InputListItem, { imgSrc: 'assets/info.webp', text: "".concat(item.info) })),
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "mapChart" },
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'mapChart' },
                     react__WEBPACK_IMPORTED_MODULE_0__.createElement(_MapChart__WEBPACK_IMPORTED_MODULE_4__.MapChart, { lat: item.lat, lng: item.lng })),
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'freeText' }, item.freeText)),
             react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'calender-item-modal-footer' },
@@ -75270,7 +75270,7 @@ var CalenderItemModal = function (props) {
                     react__WEBPACK_IMPORTED_MODULE_0__.createElement(_DeleteBtn__WEBPACK_IMPORTED_MODULE_6__.DeleteBtn, { deleteBtn: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ImgLikeIcon__WEBPACK_IMPORTED_MODULE_5__.ImgLikeIcon, { src: 'assets/waste.webp' }), deleteAction: function () { return alert('未実装です'); } })),
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null,
                     react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ImgLikeIcon__WEBPACK_IMPORTED_MODULE_5__.ImgLikeIcon, { src: 'assets/edit.webp', onClick: function () { return alert('未実装です'); } }),
-                    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ImgLikeIcon__WEBPACK_IMPORTED_MODULE_5__.ImgLikeIcon, { src: 'assets/print.webp', onClick: function () { return alert('未実装です'); } })))));
+                    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ImgLikeIcon__WEBPACK_IMPORTED_MODULE_5__.ImgLikeIcon, { src: 'assets/print.webp', onClick: function () { return alert('未実装です'); } }))))));
 };
 
 
@@ -75328,10 +75328,10 @@ var DeleteBtn = function (props) {
         });
     }
     else {
-        deleteBtnElement = react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_1__["default"], __assign({ className: "delete-btn" }, props.ButtonProps, { style: {
+        deleteBtnElement = (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_mui_material__WEBPACK_IMPORTED_MODULE_1__["default"], __assign({ className: "delete-btn" }, props.ButtonProps, { style: {
                 backgroundColor: errorColor.dark,
                 color: errorColor.contrastText,
-            }, onClick: handleOpen }), props.label || '削除');
+            }, onClick: handleOpen }), props.label || '削除'));
     }
     return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null,
         deleteBtnElement,
@@ -75375,7 +75375,7 @@ var __assign = (undefined && undefined.__assign) || function () {
 };
 
 function ImgLikeIcon(props) {
-    return react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", __assign({ src: props.src }, props, { className: "img-like-icon" }));
+    return react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", __assign({ src: props.src }, props, { className: 'img-like-icon' }));
 }
 
 
@@ -75398,9 +75398,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var InputListItem = function (_a) {
     var imgSrc = _a.imgSrc, text = _a.text;
-    return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'input-list-item' },
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'input-list-item' },
         react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ImgLikeIcon__WEBPACK_IMPORTED_MODULE_1__.ImgLikeIcon, { src: imgSrc }),
-        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, text));
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, text)));
 };
 
 
@@ -75431,13 +75431,13 @@ var MapChart = function (props) {
         lat: props.lat,
         lng: props.lng,
     };
-    return react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_leaflet__WEBPACK_IMPORTED_MODULE_2__.MapContainer, { center: position, zoom: 12, scrollWheelZoom: false, zoomControl: false },
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_leaflet__WEBPACK_IMPORTED_MODULE_2__.MapContainer, { center: position, zoom: 12, scrollWheelZoom: false, zoomControl: false },
         react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_leaflet__WEBPACK_IMPORTED_MODULE_3__.TileLayer, { url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" }),
         react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_leaflet__WEBPACK_IMPORTED_MODULE_4__.Marker, { position: position, icon: new leaflet__WEBPACK_IMPORTED_MODULE_1__.Icon({
                 iconUrl: 'assets/marker.webp',
                 iconSize: [44, 48],
-                iconAnchor: [22, 48]
-            }) }));
+                iconAnchor: [22, 48],
+            }) })));
 };
 
 
@@ -75799,7 +75799,7 @@ var EventRangeDisplayCalculator = /** @class */ (function () {
         this.avoidOverlapSpace(allocatedRanges);
         var slotsCount = this.getSlotCount();
         allocatedRanges.forEach(function (currentRange) {
-            var needRefRanges = allocatedRanges.filter(function (ar) { return (ar && ar.end > currentRange.start); });
+            var needRefRanges = allocatedRanges.filter(function (ar) { return ar && ar.end > currentRange.start; });
             var currentRightPer = currentRange.leftPer + currentRange.widthPer;
             needRefRanges.forEach(function (refRange) {
                 var nrRightPer = refRange.leftPer + refRange.widthPer;

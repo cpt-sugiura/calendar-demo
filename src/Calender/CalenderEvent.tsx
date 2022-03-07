@@ -1,5 +1,5 @@
-import React, {CSSProperties} from 'react';
-import {CalenderItemModal} from "./Modal/CalenderItemModal";
+import React, { CSSProperties } from 'react';
+import { CalenderItemModal } from './Modal/CalenderItemModal';
 
 type CalenderEventOnCalender = {
   startDate: Date;
@@ -18,7 +18,7 @@ export type CalenderEventCanBeOnModal = CalenderEventOnCalender & {
   operator: string;
   info: string;
   freeText: string;
-}
+};
 type CalenderEventProps = {
   event: CalenderEventCanBeOnModal;
   style?: CSSProperties;
@@ -26,10 +26,7 @@ type CalenderEventProps = {
 export const CalenderEvent: React.FC<CalenderEventProps> = (props) => {
   return (
     <CalenderItemModal item={props.event}>
-      <div
-        className={'calender-event'}
-        style={props?.style}
-      >
+      <div className={'calender-event'} style={props?.style}>
         <div className={'calender-event-front'}>
           <div>{props.event.title}</div>
         </div>

@@ -1,4 +1,4 @@
-import {CalenderEventCanBeOnModal} from "./CalenderEvent";
+import { CalenderEventCanBeOnModal } from './CalenderEvent';
 
 const dateInitForDemo = new Date().getDate();
 const pallet = ['#b8f9ba', '#ccddff', '#dfdfdf'];

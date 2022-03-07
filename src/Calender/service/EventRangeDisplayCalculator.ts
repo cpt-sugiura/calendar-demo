@@ -1,14 +1,11 @@
-import {
-  arrUniq,
-  spaceshipEval,
-} from '../calender-helper';
+import { arrUniq, spaceshipEval } from '../calender-helper';
 
 type PrimitiveRange = {
   start: Date;
   end: Date;
 };
 type GroupPrimitiveRange = {
-  group: PrimitiveRange[]
+  group: PrimitiveRange[];
   start: Date;
   end: Date;
 };
@@ -41,17 +38,16 @@ export class EventRangeDisplayCalculator<T = {}> {
 
     const slotsCount = this.getSlotCount();
     allocatedRanges.forEach((currentRange) => {
-      const needRefRanges = allocatedRanges.filter(ar => (ar && ar.end > currentRange.start));
+      const needRefRanges = allocatedRanges.filter((ar) => ar && ar.end > currentRange.start);
       const currentRightPer = currentRange.leftPer + currentRange.widthPer;
-      needRefRanges.forEach(refRange => {
+      needRefRanges.forEach((refRange) => {
         const nrRightPer = refRange.leftPer + refRange.widthPer;
-        if(refRange.end <= currentRange.end) {
+        if (refRange.end <= currentRange.end) {
           if (currentRange.leftPer < refRange.leftPer && nrRightPer < currentRightPer) {
             currentRange.widthPer = nrRightPer - 100 / slotsCount - currentRange.leftPer;
           }
         }
-      })
-
+      });
     });
 
     return allocatedRanges;

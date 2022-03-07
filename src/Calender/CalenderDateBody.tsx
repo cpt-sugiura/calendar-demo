@@ -1,12 +1,11 @@
-import {CalenderDate, SATURDAY, SUNDAY} from './@types/Date';
-import React, {useEffect, useRef, useState} from 'react';
-import {DateStruct} from './useDate';
-import {CalenderEvent, CalenderEventCanBeOnModal} from './CalenderEvent';
-import {EventRangeDisplayCalculator} from './service/EventRangeDisplayCalculator';
-import {CalenderTimeMarker} from './CalenderTimeMarker';
-import {includeCurrentTime, isToday} from './calender-helper';
-import {events} from "./TestData";
-
+import { CalenderDate, SATURDAY, SUNDAY } from './@types/Date';
+import React, { useEffect, useRef, useState } from 'react';
+import { DateStruct } from './useDate';
+import { CalenderEvent, CalenderEventCanBeOnModal } from './CalenderEvent';
+import { EventRangeDisplayCalculator } from './service/EventRangeDisplayCalculator';
+import { CalenderTimeMarker } from './CalenderTimeMarker';
+import { includeCurrentTime, isToday } from './calender-helper';
+import { events } from './TestData';
 
 type CalenderDateBodyProps = {
   dateStructs: DateStruct[];
