@@ -75462,7 +75462,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _calender_helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./calender-helper */ "./src/Calender/calender-helper.ts");
 var _a;
 
-var dateInitForDemo = new Date().getDate() + 3;
+var dateInitForDemo = new Date().getDate();
 var pallet = (0,_calender_helper__WEBPACK_IMPORTED_MODULE_0__.getParams)().light !== undefined
     ? ['#b8f9ba', '#ccddff', '#dfdfdf']
     : ['#0b8043', '#039be5', '#616161'];
