@@ -29,8 +29,11 @@ export const CalenderEvent: React.FC<CalenderEventProps> = (props) => {
     <CalenderItemModal item={props.event}>
       <div className={'calender-event'} style={props?.style}>
         <div className={'calender-event-front'}>
-          <div>{props.event.title}</div>
+          <div className={'main-text'}>
+            {props.event.title}
+          </div>
         </div>
+        <div className={'for-overflow-text'}>{props.event.title}</div>
       </div>
     </CalenderItemModal>
   );

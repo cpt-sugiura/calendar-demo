@@ -6,7 +6,7 @@
   "license": "ISC",
   "scripts": {
     "clean": "rm -rf dist tsc",
-    "build": "webpack",
+    "build": "webpack --mode production",
     "watch": "webpack --watch",
     "start": "webpack serve",
     "eslint": "eslint src/**/*.{ts,tsx,js,jsx,vue} --fix"
