@@ -50,7 +50,7 @@ export const CalenderDateBody: React.FC<CalenderDateBodyProps> = (props) => {
                     style={{
                       top: event.topPer * tbodyHeight,
                       height: event.heightPer * tbodyHeight,
-                      color: event.color || blackOrWhite(event.backgroundColor),
+                      color: event.color || blackOrWhite(event.backgroundColor)=== 'black' ? '#444444' : '#fff',
                       backgroundColor: event.backgroundColor,
                       borderColor: event.color || blackOrWhite(event.backgroundColor) === 'black' ? '#888888' : '#fff',
                       left: `${event.leftPer}%`,
