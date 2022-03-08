@@ -15,7 +15,7 @@ type CalenderItemModalProps = {
 };
 export const CalenderItemModal: React.FC<CalenderItemModalProps> = (props) => {
   const { item } = props;
-
+(new DataTransfer()).items
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

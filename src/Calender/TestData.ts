@@ -1,7 +1,10 @@
 import { CalenderEventCanBeOnModal } from './CalenderEvent';
+import {getParams} from "./calender-helper";
 
 const dateInitForDemo = new Date().getDate();
-const pallet = ['#b8f9ba', '#ccddff', '#dfdfdf'];
+const pallet = getParams().light !== undefined
+  ? ['#b8f9ba', '#ccddff', '#dfdfdf']
+  : ['#0b8043', '#039be5', '#616161'];
 
 export const events: { [p: number]: CalenderEventCanBeOnModal[] } = {
   [dateInitForDemo]: [

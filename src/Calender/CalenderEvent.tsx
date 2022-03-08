@@ -5,6 +5,7 @@ type CalenderEventOnCalender = {
   startDate: Date;
   endDate: Date;
   title: string;
+  color?: CSSProperties['color'];
   backgroundColor: CSSProperties['backgroundColor'];
 };
 export type CalenderEventCanBeOnModal = CalenderEventOnCalender & {

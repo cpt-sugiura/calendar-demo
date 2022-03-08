@@ -75045,7 +75045,9 @@ var CalenderDateBody = function (props) {
                     return (react__WEBPACK_IMPORTED_MODULE_1__.createElement(_CalenderEvent__WEBPACK_IMPORTED_MODULE_2__.CalenderEvent, { key: "".concat(d.date.getDate(), "-").concat(event.title), event: event, style: {
                             top: event.topPer * tbodyHeight,
                             height: event.heightPer * tbodyHeight,
+                            color: event.color || (0,_calender_helper__WEBPACK_IMPORTED_MODULE_5__.blackOrWhite)(event.backgroundColor),
                             backgroundColor: event.backgroundColor,
+                            borderColor: event.color || (0,_calender_helper__WEBPACK_IMPORTED_MODULE_5__.blackOrWhite)(event.backgroundColor) === 'black' ? '#888888' : '#fff',
                             left: "".concat(event.leftPer, "%"),
                             width: "".concat(event.widthPer, "%"),
                         } }));
@@ -75229,6 +75231,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var CalenderItemModal = function (props) {
     var item = props.item;
+    (new DataTransfer()).items;
     var _a = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false), open = _a[0], setOpen = _a[1];
     var handleOpen = function () { return setOpen(true); };
     var handleClose = function () { return setOpen(false); };
@@ -75456,9 +75459,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "events": () => (/* binding */ events)
 /* harmony export */ });
+/* harmony import */ var _calender_helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./calender-helper */ "./src/Calender/calender-helper.ts");
 var _a;
+
 var dateInitForDemo = new Date().getDate();
-var pallet = ['#b8f9ba', '#ccddff', '#dfdfdf'];
+var pallet = (0,_calender_helper__WEBPACK_IMPORTED_MODULE_0__.getParams)().light !== undefined
+    ? ['#b8f9ba', '#ccddff', '#dfdfdf']
+    : ['#0b8043', '#039be5', '#616161'];
 var events = (_a = {},
     _a[dateInitForDemo] = [
         {
@@ -75722,7 +75729,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "includeCurrentTime": () => (/* binding */ includeCurrentTime),
 /* harmony export */   "makeClassName": () => (/* binding */ makeClassName),
 /* harmony export */   "spaceshipEval": () => (/* binding */ spaceshipEval),
-/* harmony export */   "arrUniq": () => (/* binding */ arrUniq)
+/* harmony export */   "arrUniq": () => (/* binding */ arrUniq),
+/* harmony export */   "blackOrWhite": () => (/* binding */ blackOrWhite),
+/* harmony export */   "getParams": () => (/* binding */ getParams)
 /* harmony export */ });
 var isToday = function (d) {
     var today = new Date();
@@ -75749,6 +75758,34 @@ var spaceshipEval = function (a, b) {
 };
 var arrUniq = function (array) {
     return Array.from(new Set(array));
+};
+/*** 渡されたrgbに対して目立つ色を返す */
+var blackOrWhite = function (rgb) {
+    var rgbArr = undefined;
+    if (Array.isArray(rgb)) {
+        rgbArr = rgb;
+    }
+    else if (typeof rgb === 'string') {
+        var match = void 0;
+        if ((match = rgb.match(/#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})/))) {
+            rgbArr = [match[1], match[2], match[3]].map(function (n) { return Number.parseInt(n, 16); });
+        }
+        else if ((match = rgb.match(/rgba?\((\d+\s*),\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*\d+\s*)?\)/))) {
+            rgbArr = [+match[1], +match[2], +match[3]];
+        }
+    }
+    if (rgbArr === undefined || rgbArr.length < 3) {
+        console.error("rgb\u5F62\u5F0F\u3067\u306A\u3044\u5024\u304C\u6E21\u3055\u308C\u307E\u3057\u305F in blackOrWhite, ".concat(rgb, ", ").concat(JSON.stringify(rgb, null, 2)));
+        return undefined;
+    }
+    return (rgbArr[0] * 299 + rgbArr[1] * 587 + rgbArr[2] * 114) / 1000 < 128 ? 'white' : 'black';
+};
+var getParams = function () {
+    var ret = {};
+    new URLSearchParams(window.location.search).forEach(function (v, k) {
+        ret[k] = v;
+    });
+    return ret;
 };
 
 

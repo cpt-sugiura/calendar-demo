@@ -4,7 +4,7 @@ import { DateStruct } from './useDate';
 import { CalenderEvent, CalenderEventCanBeOnModal } from './CalenderEvent';
 import { EventRangeDisplayCalculator } from './service/EventRangeDisplayCalculator';
 import { CalenderTimeMarker } from './CalenderTimeMarker';
-import { includeCurrentTime, isToday } from './calender-helper';
+import {blackOrWhite, includeCurrentTime, isToday} from './calender-helper';
 import { events } from './TestData';
 
 type CalenderDateBodyProps = {
@@ -50,7 +50,9 @@ export const CalenderDateBody: React.FC<CalenderDateBodyProps> = (props) => {
                     style={{
                       top: event.topPer * tbodyHeight,
                       height: event.heightPer * tbodyHeight,
+                      color: event.color || blackOrWhite(event.backgroundColor),
                       backgroundColor: event.backgroundColor,
+                      borderColor: event.color || blackOrWhite(event.backgroundColor) === 'black' ? '#888888' : '#fff',
                       left: `${event.leftPer}%`,
                       width: `${event.widthPer}%`,
                     }}
