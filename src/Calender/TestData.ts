@@ -1,7 +1,7 @@
 import { CalenderEventCanBeOnModal } from './CalenderEvent';
 import {getParams} from "./calender-helper";
 
-const dateInitForDemo = new Date().getDate();
+const dateInitForDemo = new Date().getDate() + 3;
 const pallet = getParams().light !== undefined
   ? ['#b8f9ba', '#ccddff', '#dfdfdf']
   : ['#0b8043', '#039be5', '#616161'];

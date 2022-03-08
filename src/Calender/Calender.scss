@@ -69,7 +69,7 @@
       thead {
         top: 0;
         position: sticky;
-        z-index: 100;
+        z-index: 2100;
 
         th {
           &:first-child {
@@ -93,6 +93,8 @@
 
         .date-header-date-cell {
           position: relative;
+          font-size: 2em;
+          font-weight: normal;
 
           .invisible-for-width {
             visibility: hidden;
