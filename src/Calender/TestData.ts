@@ -1,4 +1,4 @@
-import { CalenderEventCanBeOnModal } from './CalenderEvent';
+import {CalenderEventCanBeOnModal} from './CalenderEvent';
 import {getParams} from "./calender-helper";
 
 const dateInitForDemo = new Date().getDate();
