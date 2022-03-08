@@ -29,7 +29,9 @@ export const CalenderEvent: React.FC<CalenderEventProps> = (props) => {
     <CalenderItemModal item={props.event}>
       <div className={'calender-event'} style={props?.style}>
         <div className={'calender-event-front'}>
-          <div className={'main-text'}>
+          <div className={'main-text'} style={{
+            color: props?.style?.color || 'inherit'
+          }}>
             {props.event.title}
           </div>
         </div>
